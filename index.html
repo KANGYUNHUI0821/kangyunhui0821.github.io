@@ -37,7 +37,6 @@
 
     .container{ max-width: 760px; }
 
-    /* Top header: name left, menu right */
     .topbar{
       display:flex;
       align-items: baseline;
@@ -79,17 +78,7 @@
       text-decoration-thickness: 1px;
     }
 
-    h1{
-      font-size: 30px;
-      font-weight: 500;
-      margin: 0 0 18px 0;
-      letter-spacing: -0.01em;
-    }
-
-    .spacer{ height: 32px; }
-
-    .kor,
-    .en{
+    .kor, .en{
       font-size: 14px;
       line-height: 1.9;
       margin: 0 0 12px 0;
@@ -103,110 +92,54 @@
       max-width: 680px;
     }
 
-    .prose{
-      margin-top: 28px;
-    }
-
-    .prose p{
-      font-size: 13.5px;
-      line-height: 2.0;
-      margin: 0 0 12px 0;
-      max-width: 680px;
-    }
-
-    .prose h2{
-      font-size: 15px;
-      font-weight: 500;
-      margin: 0 0 14px 0;
-      letter-spacing: -0.01em;
-    }
-
-    details{
-      margin-top: 14px;
-    }
-
-    details summary{
-      cursor: pointer;
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    details summary:hover{ color: var(--text); }
-
-    details .note{
-      font-size: 13px;
-      line-height: 1.9;
-      margin: 10px 0 0 0;
-    }
-
-    hr{
-      border:0;
-      border-top:1px solid var(--hair);
-      margin: 36px 0;
-    }
-
-    /* Selected works */
-    .small{
-      font-size: 12px;
-      color: var(--muted);
-      letter-spacing: 0.06em;
-      margin: 28px 0 12px 0;
-    }
-
     .works{
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 18px;
-      margin: 0 0 6px 0;
+      margin: 28px 0 12px 0;
     }
 
     .work{
-      display: block;
       text-decoration: none;
       color: inherit;
     }
 
     .thumb{
+      width: 100%;
       background: #f0f0f0;
-  border: 1px solid var(--hair);
-  border-radius: 10px;
-  overflow: hidden;
+      border: 1px solid var(--hair);
+      border-radius: 10px;
+      overflow: hidden;
     }
 
-    .work:hover .thumb{
-      transform: translateY(-2px);
-      border-color: #dcdcdc;
-    }
-
-    /* ✅ 이미지가 들어가면 예쁘게 꽉 차게 */
+    /* ← 여기가 핵심: 사진 잘리지 않고 전체 보이게 */
     .thumb img{
-     width:100%;
-  height:auto;
-  display:block;
+      width:100%;
+      height:100%;
+      object-fit: contain;
+      display:block;
+      background:#f0f0f0;
     }
 
     .meta{
       font-size: 13px;
-      line-height: 1.6;
       margin-top: 10px;
       color: var(--text);
     }
 
     .year{ color: var(--muted); }
 
-    /* 모바일 */
     @media (max-width: 640px){
       body{ padding: 44px 22px; }
-      h1{ font-size: 28px; }
       .topbar{
         flex-direction: column;
         align-items: flex-start;
         gap: 12px;
         margin-bottom: 44px;
       }
-      nav{ white-space: normal; }
       .works{ grid-template-columns: 1fr; }
     }
+
   </style>
 </head>
 
@@ -230,81 +163,41 @@
       <p class="en">I work with the connections that remain after death, through sculptural language.</p>
 
       <p class="lead">
-        나는 ‘시간이 남긴 흔적이 반드시 상실만을 의미하는가’라는 질문에서 출발한다. 사라진 이후에도 완전히 지워지지 않는 감정과 기억은,
-        특정한 형태로 남아 우리의 현재를 계속 건드린다. 작업은 그 잔여가 어떻게 구조화되고, 어떻게 다시 감각으로 돌아오는지에 대한 기록이다.
+        나는 ‘시간이 남긴 흔적이 반드시 상실만을 의미하는가’라는 질문에서 출발한다...
       </p>
 
-      <section>
-        <p class="small">Selected works</p>
+      <div class="works">
 
-        <div class="works">
+        <!-- Work 1 -->
+        <a class="work" href="works.html">
+          <div class="thumb">
+            <img src="https://github.com/user-attachments/assets/ccc353ce-6398-4b2a-8aff-5dab01e3be71" alt="Work 1" loading="lazy">
+          </div>
+          <div class="meta">작품 제목 <span class="year">(2025)</span></div>
+        </a>
 
-          <!-- ✅ WORK 1 : 네가 준 이미지 링크 넣어둠 -->
-          <a class="work" href="works.html">
-            <div class="thumb">
-              <img src="https://github.com/user-attachments/assets/ccc353ce-6398-4b2a-8aff-5dab01e3be71" alt="Work 1" loading="lazy">
-            </div>
-            <div class="meta">작품 제목 <span class="year">(2025)</span></div>
-          </a>
+        <!-- Work 2 (두 번째 링크 적용) -->
+        <a class="work" href="works.html">
+          <div class="thumb">
+            <img src="https://github.com/user-attachments/assets/fa688101-510b-4ca4-8df9-8a5b02249f5d" alt="Work 2" loading="lazy">
+          </div>
+          <div class="meta">작품 제목 <span class="year">(2025)</span></div>
+        </a>
 
-          <!-- WORK 2 : 링크/파일 준비되면 img src만 바꾸면 됨 -->
-          <a class="work" href="works.html">
-            <div class="thumb"></div>
-            <div class="meta">작품 제목 <span class="year">(2025)</span></div>
-          </a>
+        <!-- Placeholder Work 3 -->
+        <a class="work" href="works.html">
+          <div class="thumb"></div>
+          <div class="meta">작품 제목 <span class="year">(2024)</span></div>
+        </a>
 
-          <!-- WORK 3 -->
-          <a class="work" href="works.html">
-            <div class="thumb"></div>
-            <div class="meta">작품 제목 <span class="year">(2024)</span></div>
-          </a>
+        <!-- Placeholder Work 4 -->
+        <a class="work" href="works.html">
+          <div class="thumb"></div>
+          <div class="meta">작품 제목 <span class="year">(2024)</span></div>
+        </a>
 
-          <!-- WORK 4 -->
-          <a class="work" href="works.html">
-            <div class="thumb"></div>
-            <div class="meta">작품 제목 <span class="year">(2024)</span></div>
-          </a>
-
-        </div>
-      </section>
-
-      <hr />
-
-      <div class="prose">
-        <h2>작가 노트</h2>
-        <p>
-          죽음을 대하는 형식이나 태도는 각기 다를 수 있으나, 기본적으로 사람들이 가진 가치관 속에서 부정적인 감정은 공존하고 있다.
-          죽음이라는 불가피한 사건은 자본주의적 가치관과 결합하며, 늙음이라는 과정조차 수치심이나 미안함 같은 감정을 동반하게 만든다.
-        </p>
-        <p>
-          나는 이러한 죽음을 향하는 존재로서, 죽음을 대하는 나 자신의 태도와 그 과정에서 발생하는 자아성찰에 주목한다.
-          작업은 죽음을 하나의 사건으로 바라보기보다, 삶 속에서 지속적으로 축적되는 감각과 감정의 흐름으로 다루는 시도이다.
-        </p>
-        <p>
-          돌출된 신체의 일부, 마른 생선과 같은 자연물, 그리고 다양한 유약 기법은 작업 속에서 반복적으로 등장하는 요소들이다.
-          이들은 생과 사의 경계에 놓인 상태를 암시하며, 다양한 죽음의 이미지를 포착하기 위한 조형적 장치로 기능한다.
-        </p>
-        <p>
-          죽음을 향해 나아가는 일련의 과정들은 개인적인 경험을 기반으로 재해석되며,
-          보편적이면서도 일시적인 죽음의 순간은 개인의 기억을 통해 다시 호출되고, 그 안에서 영원히 연결된다.
-        </p>
-
-        <details>
-          <summary>Artist Statement (English)</summary>
-          <p class="note">
-            Although attitudes and forms of facing death may differ, negative emotions coexist within the value systems people hold.
-            As death—an inevitable event—intersects with capitalist values, even the process of aging becomes accompanied by shame or guilt.
-          </p>
-          <p class="note">
-            My work reflects my own attitude toward death as a being moving toward it, focusing on self-reflection throughout this process.
-            By incorporating protruding body parts, natural materials such as dried fish, and various glazing techniques,
-            I capture diverse images of death and reinterpret the processes leading toward it through personal experience.
-          </p>
-          <p class="note">
-            Moments of death, though universal and temporary, remain endlessly connected through individual memory.
-          </p>
-        </details>
       </div>
+
     </main>
 
   </div>
