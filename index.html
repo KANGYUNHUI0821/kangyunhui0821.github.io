@@ -5,113 +5,234 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kang Yunhui</title>
 
+  <!--
+    사용법
+    1) 이 파일을 index.html로 저장
+    2) works.html / about.html / cv.html / contact.html에도 그대로 복사해서 붙여넣기
+    3) 각 페이지에서 nav의 class="active"만 해당 메뉴로 옮기기
+    4) 각 페이지의 <main>
+      <div class="spacer"></div> 내용만 바꾸기
+  -->
+
   <style>
-  :root{
-  --bg:#fbfbfb;
-  --text:#111;
-  --muted:#6b6b6b;
-  --hair:#e6e6e6;
-}
+    /* Nanum Barun Pen (나눔바른펜) webfont */
+    @font-face{
+      font-family:'NanumBarunpen';
+      src:url('https://cdn.jsdelivr.net/gh/fontbee/font@main/NAVER/NanumBarunpen.woff') format('woff');
+      font-weight:400;
+      font-style:normal;
+      font-display:swap;
+    }
 
-*{ box-sizing:border-box; }
+    @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
 
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family: system-ui, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  padding: 72px 84px;
-}
+    :root{
+      --bg:#fbfbfb;
+      --text:#111;
+      --muted:#6b6b6b;
+      --hair:#e6e6e6;
+    }
 
-.container{
-  max-width: 760px;
-}
+    *{ box-sizing:border-box; }
 
-nav{
-  margin-bottom: 64px;
-  font-size: 13px;
-  letter-spacing: 0.02em;
-}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family: 'NanumBarunpen', 'Gowun Dodum', system-ui, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      padding: 72px 84px;
+    }
 
-nav a{
-  margin-right: 22px;
-  text-decoration: none;
-  color: var(--muted);
-}
+    .container{ max-width: 760px; }
 
-nav a:hover{
-  color: var(--text);
-}
+    /* Top header: name left, menu right */
+    .topbar{
+      display:flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 64px;
+    }
 
-nav a.active{
-  color: var(--text);
-  text-decoration: underline;
-  text-underline-offset: 6px;
-  text-decoration-thickness: 1px;
-}
+    .brand{
+      font-size: 15px; /* 기존 h1의 약 0.5 크기 */
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin: 0;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+    }
 
-h1{
-  font-size: 34px;
-  font-weight: 600;
-  margin: 0 0 14px 0;
-  letter-spacing: -0.01em;
-}
+    nav{
+      margin: 0;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
 
-.kor{
-  font-size: 15px;
-  line-height: 1.9;
-  color: var(--text);
-  margin: 0 0 14px 0;
-  max-width: 640px;
-}
+    nav a{
+      margin-right: 22px;
+      text-decoration: none;
+      color: var(--muted);
+    }
 
-.en{
-  font-size: 13px;
-  line-height: 1.8;
-  color: var(--muted);
-  margin: 0;
-  max-width: 640px;
-}
+    nav a:hover{ color: var(--text); }
 
-hr{
-  border:0;
-  border-top:1px solid var(--hair);
-  margin: 36px 0;
-}
+    nav a.active{
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 6px;
+      text-decoration-thickness: 1px;
+    }
 
-@media (max-width: 640px){
-  body{ padding: 44px 22px; }
-  nav{ margin-bottom: 44px; }
-  h1{ font-size: 28px; }
-}
+    h1{
+      font-size: 30px;
+      font-weight: 500;
+      margin: 0 0 18px 0;
+      letter-spacing: -0.01em;
+    }
 
+    .spacer{
+      height: 32px; /* 이름 아래 엔터 2칸 정도 여백 */
+    }
+
+    /* 본문 텍스트 크기 조정 (전체적으로 한 단계 축소) */
+    .kor,
+    .en{
+      font-size: 14px;
+      line-height: 1.9;
+      margin: 0 0 12px 0;
+      max-width: 640px;
+    }
+
+    .lead{
+      font-size: 14px;
+      line-height: 2.0;
+      margin: 14px 0 0 0;
+      max-width: 680px;
+    }
+
+    .prose p{
+      font-size: 13.5px;
+      line-height: 2.0;
+      margin: 0 0 12px 0;
+      max-width: 680px;
+    }
+
+    details{
+      margin-top: 14px;
+    }
+
+    details .note{
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    /* 모바일: 메뉴 줄바꿈 허용 */
+    @media (max-width: 640px){
+      body{ padding: 44px 22px; }
+      h1{ font-size: 28px; }
+      .works{ grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 
 <body>
   <div class="container">
 
-    <nav>
-      <a href="index.html" class="active">Home</a>
-      <a href="works.html">Works</a>
-      <a href="about.html">About</a>
-      <a href="cv.html">CV</a>
-      <a href="contact.html">Contact</a>
-    </nav>
+    <header class="topbar">
+      <a class="brand" href="index.html">강윤희 KANG YUNHUI</a>
 
-    <h1>강윤희 KANG YUNHUI</h1>
+      <nav>
+        <a href="index.html" class="active">Home</a>
+        <a href="works.html">Works</a>
+        <a href="about.html">About</a>
+        <a href="cv.html">CV</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
 
-    <p class="kor">
-      죽음이라는 단절 이후에도 남아 있는 연결성을 조형 언어로 다룬다.
-    </p>
+    <!-- =========================
+         MAIN (페이지마다 이 부분만 바꾸기)
+         ========================= -->
+    <main>
+      <p class="kor">죽음이라는 단절 이후에도 남아 있는 연결성을 조형 언어로 다룬다.</p>
+      <p class="en">I work with the connections that remain after death, through sculptural language.</p>
 
-    <p class="en">
-      I work with the connections that remain after death, through sculptural language.
-    </p>
+      <!-- 길게 쓰고 싶으면 여기부터 아래를 늘려가면 됨 -->
+      <p class="lead">
+        나는 ‘시간이 남긴 흔적이 반드시 상실만을 의미하는가’라는 질문에서 출발한다. 사라진 이후에도 완전히 지워지지 않는 감정과 기억은,
+        특정한 형태로 남아 우리의 현재를 계속 건드린다. 작업은 그 잔여가 어떻게 구조화되고, 어떻게 다시 감각으로 돌아오는지에 대한 기록이다.
+      </p>
+
+      <!-- HOME에서 최근 작업 4개만 미리보기 (원하면 삭제 가능) -->
+      <section>
+        <p class="small">Selected works</p>
+
+        <div class="works">
+          <a class="work" href="works.html">
+            <div class="thumb"></div>
+            <div class="meta">작품 제목 <span class="year">(2025)</span></div>
+          </a>
+
+          <a class="work" href="works.html">
+            <div class="thumb"></div>
+            <div class="meta">작품 제목 <span class="year">(2025)</span></div>
+          </a>
+
+          <a class="work" href="works.html">
+            <div class="thumb"></div>
+            <div class="meta">작품 제목 <span class="year">(2024)</span></div>
+          </a>
+
+          <a class="work" href="works.html">
+            <div class="thumb"></div>
+            <div class="meta">작품 제목 <span class="year">(2024)</span></div>
+          </a>
+        </div>
+      </section>
+
+      <hr />
+
+      <div class="prose">
+        <h2>작가 노트</h2>
+        <p>
+          죽음을 대하는 형식이나 태도는 각기 다를 수 있으나, 기본적으로 사람들이 가진 가치관 속에서 부정적인 감정은 공존하고 있다.
+          죽음이라는 불가피한 사건은 자본주의적 가치관과 결합하며, 늙음이라는 과정조차 수치심이나 미안함 같은 감정을 동반하게 만든다.
+        </p>
+        <p>
+          나는 이러한 죽음을 향하는 존재로서, 죽음을 대하는 나 자신의 태도와 그 과정에서 발생하는 자아성찰에 주목한다.
+          작업은 죽음을 하나의 사건으로 바라보기보다, 삶 속에서 지속적으로 축적되는 감각과 감정의 흐름으로 다루는 시도이다.
+        </p>
+        <p>
+          돌출된 신체의 일부, 마른 생선과 같은 자연물, 그리고 다양한 유약 기법은 작업 속에서 반복적으로 등장하는 요소들이다.
+          이들은 생과 사의 경계에 놓인 상태를 암시하며, 다양한 죽음의 이미지를 포착하기 위한 조형적 장치로 기능한다.
+        </p>
+        <p>
+          죽음을 향해 나아가는 일련의 과정들은 개인적인 경험을 기반으로 재해석되며,
+          보편적이면서도 일시적인 죽음의 순간은 개인의 기억을 통해 다시 호출되고, 그 안에서 영원히 연결된다.
+        </p>
+
+        <details>
+          <summary>Artist Statement (English)</summary>
+          <p class="note">
+            Although attitudes and forms of facing death may differ, negative emotions coexist within the value systems people hold.
+            As death—an inevitable event—intersects with capitalist values, even the process of aging becomes accompanied by shame or guilt.
+          </p>
+          <p class="note">
+            My work reflects my own attitude toward death as a being moving toward it, focusing on self-reflection throughout this process.
+            By incorporating protruding body parts, natural materials such as dried fish, and various glazing techniques,
+            I capture diverse images of death and reinterpret the processes leading toward it through personal experience.
+          </p>
+          <p class="note">
+            Moments of death, though universal and temporary, remain endlessly connected through individual memory.
+          </p>
+        </details>
+      </div>
+    </main>
 
   </div>
-</body>
-
 </body>
 </html>
