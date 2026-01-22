@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kang Yunhui</title>
 
   <style>
@@ -14,7 +15,7 @@
     }
 
     nav {
-      margin-bottom: 60px;
+      margin-bottom: 50px;
     }
 
     nav a {
@@ -28,35 +29,49 @@
       text-decoration: underline;
     }
 
+    nav a.active {
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
     h1 {
       font-size: 32px;
       margin-bottom: 12px;
+      letter-spacing: -0.2px;
     }
 
     p {
       font-size: 16px;
-      line-height: 1.6;
-      max-width: 600px;
+      line-height: 1.7;
+      max-width: 640px;
+      margin: 0;
+    }
+
+    p + p {
+      margin-top: 12px;
     }
 
     .en {
-      margin-top: 12px;
       color: #666;
       font-size: 14px;
     }
-    nav a.active {
-  font-weight: 600;
-  text-decoration: underline;
-}
 
+    /* 모바일에서 여백만 줄이기 */
+    @media (max-width: 640px) {
+      body {
+        padding: 28px;
+      }
+      nav {
+        margin-bottom: 30px;
+      }
+      h1 {
+        font-size: 28px;
+      }
+    }
   </style>
-
- 
-
 </head>
 
 <body>
-
   <nav>
     <a href="index.html" class="active">Home</a>
     <a href="works.html">Works</a>
@@ -64,7 +79,6 @@
     <a href="cv.html">CV</a>
     <a href="contact.html">Contact</a>
   </nav>
-
 
   <h1>강윤희 KANG YUNHUI</h1>
 
@@ -75,6 +89,5 @@
   <p class="en">
     I work with the connections that remain after death, through sculptural language.
   </p>
-
 </body>
 </html>
