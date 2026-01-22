@@ -94,13 +94,13 @@
       margin:32px 0 12px 0;
     }
 
-    /* ===== Slider ===== */
+    /* Slider */
     .slider{
       position: relative;
-      border: 1px solid var(--hair);
-      border-radius: 14px;
-      background: var(--panel);
-      overflow: hidden;
+      border:1px solid var(--hair);
+      border-radius:14px;
+      background:var(--panel);
+      overflow:hidden;
     }
 
     .track{
@@ -111,8 +111,8 @@
     }
 
     .slide{
-      min-width: 100%;
-      padding: 18px 18px 14px 18px;
+      min-width:100%;
+      padding:18px 18px 14px 18px;
       text-decoration:none;
       color:inherit;
     }
@@ -121,4 +121,186 @@
       width:100%;
       height:420px;
       background:#f3f3f3;
-      border-radius:12
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+
+    .frame img{
+      max-width:100%;
+      max-height:100%;
+      width:auto;
+      height:auto;
+      object-fit:contain;
+      display:block;
+    }
+
+    .meta{
+      font-size:13px;
+      margin-top:12px;
+    }
+    .year{ color:var(--muted); }
+
+    .btn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:34px;
+      height:34px;
+      border-radius:999px;
+      border:1px solid var(--hair);
+      background:rgba(255,255,255,0.85);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      user-select:none;
+    }
+    .btn:hover{ background:rgba(255,255,255,0.95); }
+    .prev{ left:10px; }
+    .next{ right:10px; }
+    .btn[disabled]{ opacity:0.35; cursor:default; }
+
+    @media (max-width:640px){
+      body{ padding:44px 22px; }
+      .topbar{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:12px;
+        margin-bottom:44px;
+      }
+      .frame{ height:340px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <header class="topbar">
+      <a class="brand" href="index.html">강윤희 KANG YUNHUI</a>
+      <nav>
+        <a href="index.html" class="active">Home</a>
+        <a href="works.html">Works</a>
+        <a href="about.html">About</a>
+        <a href="cv.html">CV</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <p class="kor">죽음이라는 단절 이후에도 남아 있는 연결성을 조형 언어로 다룬다.</p>
+      <p class="en">I work with the connections that remain after death, through sculptural language.</p>
+
+      <p class="lead">
+        나는 ‘시간이 남긴 흔적이 반드시 상실만을 의미하는가’라는 질문에서 출발한다.
+        사라진 이후에도 완전히 지워지지 않는 감정과 기억은 특정한 형태로 남아
+        우리의 현재를 계속 건드린다.
+      </p>
+
+      <p class="section-title">Selected works</p>
+
+      <section class="slider">
+        <button class="btn prev" id="prevBtn">‹</button>
+        <button class="btn next" id="nextBtn">›</button>
+
+        <div class="track" id="track">
+
+          <!-- Slide 1 -->
+          <a class="slide" href="works.html">
+            <div class="frame">
+              <img src="https://github.com/user-attachments/assets/ccc353ce-6398-4b2a-8aff-5dab01e3be71" alt="Work 1">
+            </div>
+            <div class="meta">작품 제목 <span class="year">(2025)</span></div>
+          </a>
+
+          <!-- Slide 2 -->
+          <a class="slide" href="works.html">
+            <div class="frame">
+              <img src="https://github.com/user-attachments/assets/fa688101-510b-4ca4-8df9-8a5b02249f5d" alt="Work 2">
+            </div>
+            <div class="meta">작품 제목 <span class="year">(2025)</span></div>
+          </a>
+
+          <!-- Slide 3 -->
+          <a class="slide" href="works.html">
+            <div class="frame">
+              <img src="https://github.com/user-attachments/assets/15d7c153-ea87-4785-a2c2-c04a61a2cf1a" alt="Work 3">
+            </div>
+            <div class="meta">작품 제목 <span class="year">(2025)</span></div>
+          </a>
+
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    (function(){
+      const track = document.getElementById('track');
+      const slides = Array.from(track.children);
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+
+      let index = 0;
+      let startX = 0;
+      let dx = 0;
+      let dragging = false;
+      let moved = false;
+
+      function update(){
+        track.style.transform = `translateX(${-index * 100}%)`;
+        prevBtn.disabled = index === 0;
+        nextBtn.disabled = index === slides.length - 1;
+      }
+
+      prevBtn.onclick = () => {
+        if(index > 0){ index--; update(); }
+      };
+      nextBtn.onclick = () => {
+        if(index < slides.length - 1){ index++; update(); }
+      };
+
+      track.addEventListener('pointerdown', e => {
+        dragging = true;
+        moved = false;
+        startX = e.clientX;
+        dx = 0;
+        track.style.transition = 'none';
+      });
+
+      window.addEventListener('pointermove', e => {
+        if(!dragging) return;
+        dx = e.clientX - startX;
+        if(Math.abs(dx) > 5) moved = true;
+        track.style.transform =
+          `translateX(${-index * 100}%) translateX(${dx}px)`;
+      });
+
+      window.addEventListener('pointerup', () => {
+        if(!dragging) return;
+        dragging = false;
+        track.style.transition = 'transform 240ms ease';
+
+        if(dx > 60 && index > 0) index--;
+        else if(dx < -60 && index < slides.length - 1) index++;
+
+        update();
+      });
+
+      slides.forEach(slide => {
+        slide.addEventListener('click', e => {
+          if(moved){
+            e.preventDefault();
+            e.stopPropagation();
+          }
+        });
+      });
+
+      update();
+    })();
+  </script>
+</body>
+</html>
