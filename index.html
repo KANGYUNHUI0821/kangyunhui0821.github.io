@@ -6,7 +6,7 @@
   <title>Kang Yunhui</title>
 
   <style>
-    /* Nanum Barun Pen (나눔바른펜) webfont */
+    /* Font */
     @font-face{
       font-family:'NanumBarunpen';
       src:url('https://cdn.jsdelivr.net/gh/fontbee/font@main/NAVER/NanumBarunpen.woff') format('woff');
@@ -14,7 +14,6 @@
       font-style:normal;
       font-display:swap;
     }
-
     @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
 
     :root{
@@ -30,121 +29,121 @@
       margin:0;
       background:var(--bg);
       color:var(--text);
-      font-family: 'NanumBarunpen', 'Gowun Dodum', system-ui, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+      font-family:'NanumBarunpen','Gowun Dodum',system-ui,sans-serif;
       -webkit-font-smoothing: antialiased;
-      padding: 72px 84px;
+      padding:72px 84px;
     }
 
-    .container{ max-width: 760px; }
+    .container{ max-width:760px; }
 
+    /* Header */
     .topbar{
       display:flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 64px;
+      justify-content:space-between;
+      align-items:baseline;
+      margin-bottom:64px;
     }
 
     .brand{
-      font-size: 15px;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      margin: 0;
-      color: var(--text);
-      text-decoration: none;
-      white-space: nowrap;
+      font-size:15px;
+      font-weight:500;
+      color:var(--text);
+      text-decoration:none;
+      white-space:nowrap;
     }
 
     nav{
-      margin: 0;
-      font-size: 13px;
-      letter-spacing: 0.04em;
-      white-space: nowrap;
+      font-size:13px;
+      letter-spacing:0.04em;
     }
 
     nav a{
-      margin-right: 22px;
-      text-decoration: none;
-      color: var(--muted);
+      margin-right:22px;
+      text-decoration:none;
+      color:var(--muted);
     }
-    nav a:last-child{ margin-right: 0; }
-
-    nav a:hover{ color: var(--text); }
-
+    nav a:last-child{ margin-right:0; }
+    nav a:hover{ color:var(--text); }
     nav a.active{
-      color: var(--text);
-      text-decoration: underline;
-      text-underline-offset: 6px;
-      text-decoration-thickness: 1px;
+      color:var(--text);
+      text-decoration:underline;
+      text-underline-offset:6px;
     }
 
-    .kor, .en{
-      font-size: 14px;
-      line-height: 1.9;
-      margin: 0 0 12px 0;
-      max-width: 640px;
+    /* Intro text */
+    .kor,.en{
+      font-size:14px;
+      line-height:1.9;
+      margin:0 0 12px 0;
+      max-width:640px;
     }
 
     .lead{
-      font-size: 14px;
-      line-height: 2.0;
-      margin: 14px 0 0 0;
-      max-width: 680px;
+      font-size:14px;
+      line-height:2.0;
+      margin:14px 0 28px 0;
+      max-width:680px;
+    }
+
+    /* Selected works */
+    .section-title{
+      font-size:12px;
+      color:var(--muted);
+      letter-spacing:0.06em;
+      margin:32px 0 12px 0;
     }
 
     .works{
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-      margin: 28px 0 12px 0;
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:18px;
     }
 
     .work{
-      text-decoration: none;
-      color: inherit;
+      text-decoration:none;
+      color:inherit;
     }
 
+    /* ★ 핵심: 고정된 전시 틀 */
     .thumb{
-  width: 100%;
-  height: 260px;   /* ⭐ 여기 숫자가 핵심 */
-  background: #f0f0f0;
-  border: 1px solid var(--hair);
-  border-radius: 10px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
+      width:100%;
+      height:260px;              /* 작은 작품 기준 */
+      background:#f3f3f3;
+      border:1px solid var(--hair);
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
     }
 
-    /* ← 여기가 핵심: 사진 잘리지 않고 전체 보이게 */
+    /* ★ 핵심: 절대 자르지 않음 */
     .thumb img{
-       max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  display: block;
+      max-width:100%;
+      max-height:100%;
+      width:auto;
+      height:auto;
+      object-fit:contain;
+      display:block;
     }
 
     .meta{
-      font-size: 13px;
-      margin-top: 10px;
-      color: var(--text);
+      font-size:13px;
+      margin-top:10px;
     }
 
-    .year{ color: var(--muted); }
+    .year{ color:var(--muted); }
 
-    @media (max-width: 640px){
-      body{ padding: 44px 22px; }
+    /* Mobile */
+    @media (max-width:640px){
+      body{ padding:44px 22px; }
       .topbar{
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-        margin-bottom: 44px;
+        flex-direction:column;
+        gap:12px;
+        margin-bottom:44px;
       }
-      .works{ grid-template-columns: 1fr; }
+      .works{ grid-template-columns:1fr; }
     }
-
   </style>
 </head>
 
@@ -153,7 +152,6 @@
 
     <header class="topbar">
       <a class="brand" href="index.html">강윤희 KANG YUNHUI</a>
-
       <nav>
         <a href="index.html" class="active">Home</a>
         <a href="works.html">Works</a>
@@ -168,41 +166,44 @@
       <p class="en">I work with the connections that remain after death, through sculptural language.</p>
 
       <p class="lead">
-        나는 ‘시간이 남긴 흔적이 반드시 상실만을 의미하는가’라는 질문에서 출발한다...
+        나는 ‘시간이 남긴 흔적이 반드시 상실만을 의미하는가’라는 질문에서 출발한다.
+        사라진 이후에도 완전히 지워지지 않는 감정과 기억은 특정한 형태로 남아
+        우리의 현재를 계속 건드린다.
       </p>
+
+      <p class="section-title">Selected works</p>
 
       <div class="works">
 
         <!-- Work 1 -->
         <a class="work" href="works.html">
           <div class="thumb">
-            <img src="https://github.com/user-attachments/assets/ccc353ce-6398-4b2a-8aff-5dab01e3be71" alt="Work 1" loading="lazy">
+            <img src="https://github.com/user-attachments/assets/ccc353ce-6398-4b2a-8aff-5dab01e3be71" alt="Work 1">
           </div>
           <div class="meta">작품 제목 <span class="year">(2025)</span></div>
         </a>
 
-        <!-- Work 2 (두 번째 링크 적용) -->
+        <!-- Work 2 -->
         <a class="work" href="works.html">
           <div class="thumb">
-            <img src="https://github.com/user-attachments/assets/fa688101-510b-4ca4-8df9-8a5b02249f5d" alt="Work 2" loading="lazy">
+            <img src="https://github.com/user-attachments/assets/fa688101-510b-4ca4-8df9-8a5b02249f5d" alt="Work 2">
           </div>
           <div class="meta">작품 제목 <span class="year">(2025)</span></div>
         </a>
 
-        <!-- Placeholder Work 3 -->
+        <!-- Work 3 -->
         <a class="work" href="works.html">
           <div class="thumb"></div>
           <div class="meta">작품 제목 <span class="year">(2024)</span></div>
         </a>
 
-        <!-- Placeholder Work 4 -->
+        <!-- Work 4 -->
         <a class="work" href="works.html">
           <div class="thumb"></div>
           <div class="meta">작품 제목 <span class="year">(2024)</span></div>
         </a>
 
       </div>
-
     </main>
 
   </div>
