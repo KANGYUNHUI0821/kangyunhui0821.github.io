@@ -6,7 +6,6 @@
   <title>Kang Yunhui</title>
 
   <style>
-    /* Font */
     @font-face{
       font-family:'NanumBarunpen';
       src:url('https://cdn.jsdelivr.net/gh/fontbee/font@main/NAVER/NanumBarunpen.woff') format('woff');
@@ -21,6 +20,7 @@
       --text:#111;
       --muted:#6b6b6b;
       --hair:#e6e6e6;
+      --panel:#f3f3f3;
     }
 
     *{ box-sizing:border-box; }
@@ -36,11 +36,11 @@
 
     .container{ max-width:760px; }
 
-    /* Header */
     .topbar{
       display:flex;
       justify-content:space-between;
       align-items:baseline;
+      gap:24px;
       margin-bottom:64px;
     }
 
@@ -53,8 +53,10 @@
     }
 
     nav{
+      margin:0;
       font-size:13px;
       letter-spacing:0.04em;
+      white-space:nowrap;
     }
 
     nav a{
@@ -68,9 +70,9 @@
       color:var(--text);
       text-decoration:underline;
       text-underline-offset:6px;
+      text-decoration-thickness:1px;
     }
 
-    /* Intro text */
     .kor,.en{
       font-size:14px;
       line-height:1.9;
@@ -85,7 +87,6 @@
       max-width:680px;
     }
 
-    /* Selected works */
     .section-title{
       font-size:12px;
       color:var(--muted);
@@ -93,56 +94,94 @@
       margin:32px 0 12px 0;
     }
 
-    .works{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:18px;
+    /* ===== Slider ===== */
+    .slider{
+      position: relative;
+      border: 1px solid var(--hair);
+      border-radius: 14px;
+      background: var(--panel);
+      overflow: hidden;
     }
 
-    .work{
-      text-decoration:none;
-      color:inherit;
+    .track{
+      display:flex;
+      transition: transform 240ms ease;
+      will-change: transform;
+      touch-action: pan-y; /* 모바일 스와이프 안정 */
     }
 
-    /* ★ 핵심: 고정된 전시 틀 */
-    .thumb{
-      width:100%;
-      height:260px;              /* 작은 작품 기준 */
-      background:#f3f3f3;
-      border:1px solid var(--hair);
-      border-radius:12px;
+    .slide{
+      min-width: 100%;
+      padding: 18px 18px 14px 18px;
+    }
+
+    .frame{
+      width: 100%;
+      height: 420px;            /* 여기만 적당히 통일 (작품은 안 잘림) */
+      background: #f3f3f3;
+      border-radius: 12px;
       display:flex;
       align-items:center;
       justify-content:center;
       overflow:hidden;
     }
 
-    /* ★ 핵심: 절대 자르지 않음 */
-    .thumb img{
-      max-width:100%;
-      max-height:100%;
-      width:auto;
-      height:auto;
-      object-fit:contain;
+    .frame img{
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;      /* 절대 자르지 않음 */
       display:block;
     }
 
     .meta{
       font-size:13px;
-      margin-top:10px;
+      margin-top:12px;
+    }
+    .year{ color: var(--muted); }
+
+    .btn{
+      position:absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      border: 1px solid var(--hair);
+      background: rgba(255,255,255,0.85);
+      color: var(--text);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    .year{ color:var(--muted); }
+    .btn:hover{ background: rgba(255,255,255,0.95); }
+    .btn:active{ transform: translateY(-50%) scale(0.98); }
 
-    /* Mobile */
-    @media (max-width:640px){
+    .prev{ left: 10px; }
+    .next{ right: 10px; }
+
+    .btn[disabled]{
+      opacity: 0.35;
+      cursor: default;
+    }
+
+    @media (max-width: 640px){
       body{ padding:44px 22px; }
       .topbar{
         flex-direction:column;
+        align-items:flex-start;
         gap:12px;
         margin-bottom:44px;
       }
-      .works{ grid-template-columns:1fr; }
+      nav{ white-space: normal; }
+
+      .frame{ height: 340px; }
+      .btn{ width: 32px; height: 32px; }
     }
   </style>
 </head>
@@ -173,39 +212,103 @@
 
       <p class="section-title">Selected works</p>
 
-      <div class="works">
+      <section class="slider" aria-label="Selected works slider">
+        <button class="btn prev" type="button" aria-label="Previous" id="prevBtn">‹</button>
+        <button class="btn next" type="button" aria-label="Next" id="nextBtn">›</button>
 
-        <!-- Work 1 -->
-        <a class="work" href="works.html">
-          <div class="thumb">
-            <img src="https://github.com/user-attachments/assets/ccc353ce-6398-4b2a-8aff-5dab01e3be71" alt="Work 1">
-          </div>
-          <div class="meta">작품 제목 <span class="year">(2025)</span></div>
-        </a>
+        <div class="track" id="track">
 
-        <!-- Work 2 -->
-        <a class="work" href="works.html">
-          <div class="thumb">
-            <img src="https://github.com/user-attachments/assets/fa688101-510b-4ca4-8df9-8a5b02249f5d" alt="Work 2">
-          </div>
-          <div class="meta">작품 제목 <span class="year">(2025)</span></div>
-        </a>
+          <!-- Slide 1 -->
+          <a class="slide" href="works.html">
+            <div class="frame">
+              <img src="https://github.com/user-attachments/assets/ccc353ce-6398-4b2a-8aff-5dab01e3be71" alt="Work 1" loading="lazy">
+            </div>
+            <div class="meta">작품 제목 <span class="year">(2025)</span></div>
+          </a>
 
-        <!-- Work 3 -->
-        <a class="work" href="works.html">
-          <div class="thumb"></div>
-          <div class="meta">작품 제목 <span class="year">(2024)</span></div>
-        </a>
+          <!-- Slide 2 -->
+          <a class="slide" href="works.html">
+            <div class="frame">
+              <img src="https://github.com/user-attachments/assets/fa688101-510b-4ca4-8df9-8a5b02249f5d" alt="Work 2" loading="lazy">
+            </div>
+            <div class="meta">작품 제목 <span class="year">(2025)</span></div>
+          </a>
 
-        <!-- Work 4 -->
-        <a class="work" href="works.html">
-          <div class="thumb"></div>
-          <div class="meta">작품 제목 <span class="year">(2024)</span></div>
-        </a>
+          <!-- Slide 3 (나중에 링크 넣기) -->
+          <a class="slide" href="works.html">
+            <div class="frame"></div>
+            <div class="meta">작품 제목 <span class="year">(2024)</span></div>
+          </a>
 
-      </div>
+        </div>
+      </section>
     </main>
-
   </div>
+
+  <script>
+    (function(){
+      const track = document.getElementById('track');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+
+      const slides = Array.from(track.children);
+      let index = 0;
+
+      function update(){
+        track.style.transform = `translateX(${-index * 100}%)`;
+        prevBtn.disabled = index === 0;
+        nextBtn.disabled = index === slides.length - 1;
+      }
+
+      prevBtn.addEventListener('click', () => {
+        if(index > 0){ index--; update(); }
+      });
+
+      nextBtn.addEventListener('click', () => {
+        if(index < slides.length - 1){ index++; update(); }
+      });
+
+      // 모바일/마우스 드래그 스와이프
+      let startX = 0;
+      let dx = 0;
+      let dragging = false;
+
+      function onDown(clientX){
+        dragging = true;
+        startX = clientX;
+        dx = 0;
+        track.style.transition = 'none';
+      }
+
+      function onMove(clientX){
+        if(!dragging) return;
+        dx = clientX - startX;
+        track.style.transform = `translateX(${(-index * 100)}%) translateX(${dx}px)`;
+      }
+
+      function onUp(){
+        if(!dragging) return;
+        dragging = false;
+        track.style.transition = 'transform 240ms ease';
+
+        const threshold = 60; // 넘기는 감도
+        if(dx > threshold && index > 0) index--;
+        else if(dx < -threshold && index < slides.length - 1) index++;
+
+        update();
+      }
+
+      track.addEventListener('pointerdown', (e) => {
+        // 링크 드래그 때 클릭 방지 최소화
+        onDown(e.clientX);
+      });
+
+      window.addEventListener('pointermove', (e) => onMove(e.clientX));
+      window.addEventListener('pointerup', onUp);
+      window.addEventListener('pointercancel', onUp);
+
+      update();
+    })();
+  </script>
 </body>
 </html>
