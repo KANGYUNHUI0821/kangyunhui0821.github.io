@@ -20,7 +20,6 @@
       --text:#111;
       --muted:#6b6b6b;
       --hair:#e6e6e6;
-      --panel:#f3f3f3;
     }
 
     *{ box-sizing:border-box; }
@@ -95,14 +94,12 @@
     .worklist{
       display:flex;
       flex-direction:column;
-      gap:18px;
+      gap:28px;
     }
 
     .workcard{
-      border:1px solid var(--hair);
-      border-radius:14px;
-      background:var(--panel);
-      overflow:hidden;
+      border:none;
+      background:transparent;
       text-decoration:none;
       color:inherit;
       display:block;
@@ -110,25 +107,21 @@
 
     .frame{
       width:100%;
-      height:460px;
       display:flex;
       align-items:center;
       justify-content:center;
-      background:var(--panel);
-      padding:16px;
+      background:transparent;
+      padding:0;
     }
 
     .frame img{
       max-width:100%;
-      max-height:100%;
-      width:auto;
       height:auto;
-      object-fit:contain;
       display:block;
     }
 
     .meta{
-      padding:14px 16px 16px 16px;
+      margin-top:10px;
       font-size:13px;
     }
 
@@ -143,7 +136,6 @@
         margin-bottom:44px;
       }
       nav{ white-space: normal; }
-      .frame{ height:340px; }
     }
   </style>
 </head>
@@ -174,7 +166,6 @@
       <p class="section-title">Selected works</p>
 
       <section class="worklist">
-
         <a class="workcard" href="works.html">
           <div class="frame">
             <img src="images/IMG_8141.JPG" alt="Work 1">
@@ -195,7 +186,6 @@
           </div>
           <div class="meta">작품 제목 <span class="year">(2025)</span></div>
         </a>
-
       </section>
     </main>
   </div>
