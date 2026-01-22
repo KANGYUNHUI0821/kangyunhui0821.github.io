@@ -6,68 +6,86 @@
   <title>Kang Yunhui</title>
 
   <style>
-    body {
-      font-family: sans-serif;
-      margin: 0;
-      padding: 60px;
-      background: #ffffff;
-      color: #111;
-    }
+  :root{
+  --bg:#fbfbfb;
+  --text:#111;
+  --muted:#6b6b6b;
+  --hair:#e6e6e6;
+}
 
-    nav {
-      margin-bottom: 50px;
-    }
+*{ box-sizing:border-box; }
 
-    nav a {
-      margin-right: 20px;
-      text-decoration: none;
-      color: #111;
-      font-size: 14px;
-    }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family: system-ui, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  padding: 72px 84px;
+}
 
-    nav a:hover {
-      text-decoration: underline;
-    }
+.container{
+  max-width: 760px;
+}
 
-    nav a.active {
-      font-weight: 600;
-      text-decoration: underline;
-    }
+nav{
+  margin-bottom: 64px;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
 
-    h1 {
-      font-size: 32px;
-      margin-bottom: 12px;
-      letter-spacing: -0.2px;
-    }
+nav a{
+  margin-right: 22px;
+  text-decoration: none;
+  color: var(--muted);
+}
 
-    p {
-      font-size: 16px;
-      line-height: 1.7;
-      max-width: 640px;
-      margin: 0;
-    }
+nav a:hover{
+  color: var(--text);
+}
 
-    p + p {
-      margin-top: 12px;
-    }
+nav a.active{
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
+}
 
-    .en {
-      color: #666;
-      font-size: 14px;
-    }
+h1{
+  font-size: 34px;
+  font-weight: 600;
+  margin: 0 0 14px 0;
+  letter-spacing: -0.01em;
+}
 
-    /* 모바일에서 여백만 줄이기 */
-    @media (max-width: 640px) {
-      body {
-        padding: 28px;
-      }
-      nav {
-        margin-bottom: 30px;
-      }
-      h1 {
-        font-size: 28px;
-      }
-    }
+.kor{
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--text);
+  margin: 0 0 14px 0;
+  max-width: 640px;
+}
+
+.en{
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin: 0;
+  max-width: 640px;
+}
+
+hr{
+  border:0;
+  border-top:1px solid var(--hair);
+  margin: 36px 0;
+}
+
+@media (max-width: 640px){
+  body{ padding: 44px 22px; }
+  nav{ margin-bottom: 44px; }
+  h1{ font-size: 28px; }
+}
+
   </style>
 </head>
 
