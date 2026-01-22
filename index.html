@@ -104,8 +104,24 @@
       margin-bottom:14px;
     }
 
+    details{
+      margin-top:16px;
+    }
+
+    details summary{
+      font-size:13px;
+      cursor:pointer;
+      color:var(--muted);
+    }
+
+    details p{
+      font-size:13px;
+      line-height:1.9;
+      margin:12px 0 0 0;
+    }
+
     /* =========================
-       모바일 전용 스타일
+       모바일 전용
        ========================= */
     @media (max-width: 640px){
       body{
@@ -166,30 +182,22 @@
 
       <section class="worklist">
         <a class="workcard" href="works.html">
-          <div class="frame">
-            <img src="images/IMG_8141.JPG" alt="">
-          </div>
+          <div class="frame"><img src="images/IMG_8141.JPG" alt=""></div>
           <div class="meta">작품 제목 (2025)</div>
         </a>
 
         <a class="workcard" href="works.html">
-          <div class="frame">
-            <img src="images/IMG_8278.JPG" alt="">
-          </div>
+          <div class="frame"><img src="images/IMG_8278.JPG" alt=""></div>
           <div class="meta">작품 제목 (2025)</div>
         </a>
 
         <a class="workcard" href="works.html">
-          <div class="frame">
-            <img src="images/KakaoTalk_20251226_140242741_02.jpg" alt="">
-          </div>
+          <div class="frame"><img src="images/KakaoTalk_20251226_140242741_02.jpg" alt=""></div>
           <div class="meta">작품 제목 (2025)</div>
         </a>
 
         <a class="workcard" href="works.html">
-          <div class="frame">
-            <img src="images/세개.jpg" alt="">
-          </div>
+          <div class="frame"><img src="images/세개.jpg" alt=""></div>
           <div class="meta">작품 제목 (2025)</div>
         </a>
       </section>
@@ -204,6 +212,15 @@
           나는 죽음을 하나의 사건이 아니라,
           삶 속에서 지속적으로 축적되는 감각의 흐름으로 다룬다.
         </p>
+
+        <details>
+          <summary>Artist Statement (English)</summary>
+          <p>
+            Although attitudes and forms of facing death may differ, negative emotions coexist
+            within social value systems. I approach death not as a single event, but as a continuous
+            accumulation of sensations within life.
+          </p>
+        </details>
       </section>
     </main>
   </div>
