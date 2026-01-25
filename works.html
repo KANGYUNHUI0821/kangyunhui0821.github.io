@@ -2,10 +2,257 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Works</title>
+
+  <style>
+    @font-face{
+      font-family:'NanumBarunpen';
+      src:url('https://cdn.jsdelivr.net/gh/fontbee/font@main/NAVER/NanumBarunpen.woff') format('woff');
+      font-weight:400;
+      font-style:normal;
+      font-display:swap;
+    }
+    @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+    :root{
+      --bg:#fbfbfb;
+      --text:#111;
+      --muted:#6b6b6b;
+      --box:#f1f1f1;
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:'NanumBarunpen','Gowun Dodum',system-ui,sans-serif;
+      padding:72px 84px;
+    }
+
+    .container{ max-width:760px; margin:0 auto; }
+
+    /* Header / Nav (Home이랑 동일) */
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:baseline;
+      margin-bottom:64px;
+    }
+
+    .brand{
+      font-size:15px;
+      text-decoration:none;
+      color:var(--text);
+    }
+
+    nav a{
+      margin-left:22px;
+      font-size:13px;
+      text-decoration:none;
+      color:var(--muted);
+    }
+
+    nav a.active{
+      color:var(--text);
+      text-decoration:underline;
+      text-underline-offset:6px;
+    }
+
+    /* Page title */
+    .page-title{
+      font-size:14px;
+      line-height:2;
+      max-width:680px;
+      margin:0 0 56px;
+      color:var(--muted);
+    }
+
+    /* Year sections */
+    .year{
+      margin-top:56px;
+    }
+    .year:first-of-type{
+      margin-top:0;
+    }
+    .year h2{
+      font-size:15px;
+      font-weight:700;
+      margin:0 0 18px;
+    }
+
+    /* Work list */
+    .worklist{
+      display:flex;
+      flex-direction:column;
+      gap:22px;
+    }
+
+    .workcard{
+      display:flex;
+      gap:18px;
+      text-decoration:none;
+      color:inherit;
+      align-items:flex-start;
+    }
+
+    .thumb{
+      width:140px;
+      flex:0 0 140px;
+      background:var(--box);
+      overflow:hidden;
+    }
+    .thumb img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+
+    .meta{
+      flex:1;
+      padding-top:2px;
+    }
+    .title{
+      font-size:14px;
+      font-weight:700;
+      margin-bottom:6px;
+      line-height:1.6;
+    }
+    .info{
+      font-size:13px;
+      line-height:1.9;
+      color:var(--muted);
+    }
+
+    .divider{
+      height:1px;
+      background:#eaeaea;
+      margin:56px 0;
+    }
+
+    @media (max-width:640px){
+      body{ padding:32px 18px; }
+
+      .topbar{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:14px;
+        margin-bottom:40px;
+      }
+
+      nav a{
+        margin-left:0;
+        margin-right:14px;
+      }
+
+      .page-title{
+        margin-bottom:40px;
+      }
+
+      .workcard{
+        gap:14px;
+      }
+      .thumb{
+        width:110px;
+        flex:0 0 110px;
+      }
+      .title{ font-size:13.5px; }
+      .info{ font-size:12.5px; }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Works</h1>
+  <div class="container">
+    <header class="topbar">
+      <a class="brand" href="index.html">강윤희 KANG YUNHUI</a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="works.html" class="active">Works</a>
+        <a href="about.html">About</a>
+        <a href="cv.html">CV</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <p class="page-title">연도별 작업 목록</p>
+
+      <!-- =========================
+           2025 (여기부터 연도별로 추가)
+      ========================= -->
+      <section class="year">
+        <h2>2025</h2>
+
+        <div class="worklist">
+          <!-- 작업 1 -->
+          <a class="workcard" href="works/green-language.html">
+            <div class="thumb">
+              <img src="images/KakaoTalk_20251226_140242741_02.jpg" alt="">
+            </div>
+            <div class="meta">
+              <div class="title">綠(녹)슨 언어</div>
+              <div class="info">페이퍼클레이, 유약, 저화도 안료, 칸탈선, 50×50×75(cm), 2025</div>
+            </div>
+          </a>
+
+          <!-- 작업 2 -->
+          <a class="workcard" href="works/mookeum-8.html">
+            <div class="thumb">
+              <img src="images/IMG_8141.JPG" alt="">
+            </div>
+            <div class="meta">
+              <div class="title">묵음의 숲 8</div>
+              <div class="info">페이퍼클레이, 칸탈선, 유약, 37 × 30 × 25 cm, 2025</div>
+            </div>
+          </a>
+
+          <!-- 작업 3 -->
+          <a class="workcard" href="works/mookeum-6.html">
+            <div class="thumb">
+              <img src="images/IMG_8278.JPG" alt="">
+            </div>
+            <div class="meta">
+              <div class="title">묵음의 숲 6</div>
+              <div class="info">페이퍼클레이, 칸탈선, 유약, 25 × 21 × 32 cm, 2025</div>
+            </div>
+          </a>
+
+          <!-- 작업 4 -->
+          <a class="workcard" href="works/mookeum.html">
+            <div class="thumb">
+              <img src="images/세개.jpg" alt="">
+            </div>
+            <div class="meta">
+              <div class="title">묵음의 숲</div>
+              <div class="info">페이퍼클레이, 칸탈선, 유약, 가변설치, 2025</div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- =========================
+           2024 (필요하면 복붙해서 쓰기)
+      ========================= -->
+      <!--
+      <div class="divider"></div>
+
+      <section class="year">
+        <h2>2024</h2>
+        <div class="worklist">
+          <a class="workcard" href="works/xxx.html">
+            <div class="thumb"><img src="images/xxx.jpg" alt=""></div>
+            <div class="meta">
+              <div class="title">작품명</div>
+              <div class="info">재료, 크기, 2024</div>
+            </div>
+          </a>
+        </div>
+      </section>
+      -->
+    </main>
+  </div>
 </body>
 </html>
-
