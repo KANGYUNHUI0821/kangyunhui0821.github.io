@@ -34,7 +34,7 @@
 
     .container{ max-width:760px; margin:0 auto; }
 
-    /* Header / Nav (Home이랑 동일) */
+    /* Header / Nav */
     .topbar{
       display:flex;
       justify-content:space-between;
@@ -61,7 +61,6 @@
       text-underline-offset:6px;
     }
 
-    /* Page title */
     .page-title{
       font-size:14px;
       line-height:2;
@@ -71,12 +70,9 @@
     }
 
     /* Year sections */
-    .year{
-      margin-top:56px;
-    }
-    .year:first-of-type{
-      margin-top:0;
-    }
+    .year{ margin-top:56px; }
+    .year:first-of-type{ margin-top:0; }
+
     .year h2{
       font-size:15px;
       font-weight:700;
@@ -93,8 +89,6 @@
     .workcard{
       display:flex;
       gap:18px;
-      text-decoration:none;
-      color:inherit;
       align-items:flex-start;
     }
 
@@ -104,6 +98,7 @@
       background:var(--box);
       overflow:hidden;
     }
+
     .thumb img{
       width:100%;
       height:auto;
@@ -114,12 +109,14 @@
       flex:1;
       padding-top:2px;
     }
+
     .title{
       font-size:14px;
       font-weight:700;
       margin-bottom:6px;
       line-height:1.6;
     }
+
     .info{
       font-size:13px;
       line-height:1.9;
@@ -147,17 +144,15 @@
         margin-right:14px;
       }
 
-      .page-title{
-        margin-bottom:40px;
-      }
+      .page-title{ margin-bottom:40px; }
 
-      .workcard{
-        gap:14px;
-      }
+      .workcard{ gap:14px; }
+
       .thumb{
         width:110px;
         flex:0 0 110px;
       }
+
       .title{ font-size:13.5px; }
       .info{ font-size:12.5px; }
     }
@@ -180,75 +175,153 @@
     <main>
       <p class="page-title">연도별 작업 목록</p>
 
-      <!-- =========================
-           2025 (여기부터 연도별로 추가)
-      ========================= -->
+      <!-- ===== 2025 ===== -->
       <section class="year">
         <h2>2025</h2>
 
         <div class="worklist">
-          <!-- 작업 1 -->
-          <a class="workcard" href="works/green-language.html">
-            <div class="thumb">
-              <img src="images/KakaoTalk_20251226_140242741_02.jpg" alt="">
-            </div>
+
+          <div class="workcard">
+            <div class="thumb"><img src="images/녹슨언어.jpg" alt=""></div>
             <div class="meta">
               <div class="title">綠(녹)슨 언어</div>
               <div class="info">페이퍼클레이, 유약, 저화도 안료, 칸탈선, 50×50×75(cm), 2025</div>
             </div>
-          </a>
+          </div>
 
-          <!-- 작업 2 -->
-          <a class="workcard" href="works/mookeum-8.html">
-            <div class="thumb">
-              <img src="images/IMG_8141.JPG" alt="">
-            </div>
+          <div class="workcard">
+            <div class="thumb"><img src="images/묵음의 숲 8.jpg" alt=""></div>
             <div class="meta">
               <div class="title">묵음의 숲 8</div>
-              <div class="info">페이퍼클레이, 칸탈선, 유약, 37 × 30 × 25 cm, 2025</div>
+              <div class="info">페이퍼클레이, 칸탈선, 유약, 37 × 30 × 25(cm), 2025</div>
             </div>
-          </a>
+          </div>
 
-          <!-- 작업 3 -->
-          <a class="workcard" href="works/mookeum-6.html">
-            <div class="thumb">
-              <img src="images/IMG_8278.JPG" alt="">
-            </div>
+          <div class="workcard">
+            <div class="thumb"><img src="images/묵음의 숲 6.jpg" alt=""></div>
             <div class="meta">
               <div class="title">묵음의 숲 6</div>
-              <div class="info">페이퍼클레이, 칸탈선, 유약, 25 × 21 × 32 cm, 2025</div>
+              <div class="info">페이퍼클레이, 칸탈선, 유약, 25 × 21 × 32(cm), 2025</div>
             </div>
-          </a>
+          </div>
 
-          <!-- 작업 4 -->
-          <a class="workcard" href="works/mookeum.html">
-            <div class="thumb">
-              <img src="images/세개.jpg" alt="">
-            </div>
+          <div class="workcard">
+            <div class="thumb"><img src="images/세개.jpg" alt=""></div>
             <div class="meta">
               <div class="title">묵음의 숲</div>
               <div class="info">페이퍼클레이, 칸탈선, 유약, 가변설치, 2025</div>
             </div>
-          </a>
+          </div>
+
+          <div class="workcard">
+            <div class="thumb"><img src="images/물방울.jpg" alt=""></div>
+            <div class="meta">
+              <div class="title">물방울</div>
+              <div class="info">작품 정보(재료/크기/연도) 입력</div>
+            </div>
+          </div>
+
+          <div class="workcard">
+            <div class="thumb"><img src="images/put it on you.jpg" alt=""></div>
+            <div class="meta">
+              <div class="title">put it on you</div>
+              <div class="info">작품 정보(재료/크기/연도) 입력</div>
+            </div>
+          </div>
+
+          <div class="workcard">
+            <div class="thumb"><img src="images/두손모아.jpg" alt=""></div>
+            <div class="meta">
+              <div class="title">두 손 모아</div>
+              <div class="info">작품 정보(재료/크기/연도) 입력</div>
+            </div>
+          </div>
+
+          <div class="workcard">
+            <div class="thumb"><img src="images/매병.JPG" alt=""></div>
+            <div class="meta">
+              <div class="title">매병</div>
+              <div class="info">작품 정보(재료/크기/연도) 입력</div>
+            </div>
+          </div>
+
+          <div class="workcard">
+            <div class="thumb"><img src="images/강윤희,앉지 못하는 꼬리뼈,44x40x60cm,.jpg" alt=""></div>
+            <div class="meta">
+              <div class="title">앉지 못하는 꼬리뼈</div>
+              <div class="info">44×40×60(cm), 재료 입력, 연도 입력</div>
+            </div>
+          </div>
+
+          <!-- 아래는 '세부' 파일들이지만, 네 말대로 세부가 아닐 수 있으니
+               필요 없으면 이 카드들은 그냥 지워도 됨 -->
+
+          <div class="workcard">
+            <div class="thumb"><img src="images/물방울세부.JPG" alt=""></div>
+            <div class="meta">
+              <div class="title">물방울 (다른 컷)</div>
+              <div class="info">필요 없으면 삭제</div>
+            </div>
+          </div>
+
+          <div class="workcard">
+            <div class="thumb"><img src="images/put it on you 세부.jpg" alt=""></div>
+            <div class="meta">
+              <div class="title">put it on you (다른 컷)</div>
+              <div class="info">필요 없으면 삭제</div>
+            </div>
+          </div>
+
+          <div class="workcard">
+            <div class="thumb"><img src="images/두손모아 세부.JPG" alt=""></div>
+            <div class="meta">
+              <div class="title">두 손 모아 (다른 컷)</div>
+              <div class="info">필요 없으면 삭제</div>
+            </div>
+          </div>
+
+          <div class="workcard">
+            <div class="thumb"><img src="images/매병세부.JPG" alt=""></div>
+            <div class="meta">
+              <div class="title">매병 (다른 컷)</div>
+              <div class="info">필요 없으면 삭제</div>
+            </div>
+          </div>
+
+          <div class="workcard">
+            <div class="thumb"><img src="images/앉지못하는꼬리뼈세부.jpg" alt=""></div>
+            <div class="meta">
+              <div class="title">앉지 못하는 꼬리뼈 (다른 컷)</div>
+              <div class="info">필요 없으면 삭제</div>
+            </div>
+          </div>
+
+          <div class="workcard">
+            <div class="thumb"><img src="images/섞은이를 정리하는방법.jpg" alt=""></div>
+            <div class="meta">
+              <div class="title">섞은이를 정리하는 방법</div>
+              <div class="info">작품이면 정보 입력 / 아니면 삭제</div>
+            </div>
+          </div>
+
         </div>
       </section>
 
-      <!-- =========================
-           2024 (필요하면 복붙해서 쓰기)
-      ========================= -->
+      <!-- 다른 연도는 아래 블록 복사해서 추가 -->
       <!--
       <div class="divider"></div>
-
       <section class="year">
         <h2>2024</h2>
         <div class="worklist">
-          <a class="workcard" href="works/xxx.html">
-            <div class="thumb"><img src="images/xxx.jpg" alt=""></div>
+
+          <div class="workcard">
+            <div class="thumb"><img src="images/파일명.jpg" alt=""></div>
             <div class="meta">
               <div class="title">작품명</div>
               <div class="info">재료, 크기, 2024</div>
             </div>
-          </a>
+          </div>
+
         </div>
       </section>
       -->
