@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Work — Kang Yunhui</title>
+
+  <style>
+    @font-face{
+      font-family:'NanumBarunpen';
+      src:url('https://cdn.jsdelivr.net/gh/fontbee/font@main/NAVER/NanumBarunpen.woff') format('woff');
+      font-weight:400;
+      font-style:normal;
+      font-display:swap;
+    }
+    @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+    :root{
+      --bg:#fbfbfb;
+      --text:#111;
+      --muted:#6b6b6b;
+      --box:#f1f1f1;
+    }
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:'NanumBarunpen','Gowun Dodum',system-ui,sans-serif;
+      padding:72px 84px;
+    }
+    .container{ max-width:760px; margin:0 auto; }
+
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:baseline;
+      margin-bottom:44px;
+    }
+    .brand{
+      font-size:15px;
+      text-decoration:none;
+      color:var(--text);
+    }
+    nav a{
+      margin-left:22px;
+      font-size:13px;
+      text-decoration:none;
+      color:var(--muted);
+    }
+    nav a.active{
+      color:var(--text);
+      text-decoration:underline;
+      text-underline-offset:6px;
+    }
+
+    .back{
+      display:inline-block;
+      margin:6px 0 18px;
+      font-size:13px;
+      color:var(--muted);
+      text-decoration:none;
+    }
+
+    h1{ margin:0 0 8px; font-size:18px; }
+    .meta{ margin:0 0 18px; font-size:13px; color:var(--muted); line-height:1.8; }
+
+    .hero{
+      width:100%;
+      height:auto;
+      display:block;
+      background:var(--box);
+    }
+
+    .detailSection{ margin-top:22px; display:none; }
+    .detailLabel{ font-size:13px; color:var(--muted); margin-bottom:10px; }
+
+    .detailGrid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:10px;
+    }
+    .detailBtn{
+      border:0;
+      padding:0;
+      background:none;
+      cursor:pointer;
+    }
+    .detailBtn img{
+      width:100%;
+      height:auto;
+      display:block;
+      background:var(--box);
+    }
+
+    /* Lightbox */
+    #lightbox{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.75);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      z-index:9999;
+    }
+    #lightbox img{
+      max-width:96vw;
+      max-height:92vh;
+      display:block;
+    }
+
+    @media (max-width:640px){
+      body{ padding:32px 18px; }
+      .topbar{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:14px;
+        margin-bottom:28px;
+      }
+      nav a{
+        margin-left:0;
+        margin-right:14px;
+      }
+      .detailGrid{ grid-template-columns:repeat(2, 1fr); }
+    }
+  </style>
+
+  <!-- 작품 데이터 -->
+  <script src="data/works.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <header class="topbar">
+      <a class="brand" href="index.html">강윤희 KANG YUNHUI</a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="works.html" class="active">Works</a>
+        <a href="about.html">About</a>
+        <a href="cv.html">CV</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <a class="back" href="works.html">← Works로 돌아가기</a>
+
+      <h1 id="title">작품</h1>
+      <p class="meta" id="meta"></p>
+
+      <img id="hero" class="hero" alt="">
+
+      <div id="detailSection" class="detailSection">
+        <div class="detailLabel">세부 이미지</div>
+        <div id="detailGrid" class="detailGrid"></div>
+      </div>
+    </main>
+  </div>
+
+  <div id="lightbox">
+    <img id="lightboxImg" alt="">
+  </div>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const id = params.get("id");
+
+    const works = window.WORKS || [];
+    const work = works.find(w => w.id === id);
+
+    const titleEl = document.getElementById("title");
+    const metaEl = document.getElementById("meta");
+    const heroEl = document.getElementById("hero");
+
+    const detailSection = document.getElementById("detailSection");
+    const detailGrid = document.getElementById("detailGrid");
+
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightboxImg");
+
+    function imgPath(filename){
+      return "images/" + encodeURIComponent(filename);
+    }
+
+    if (!work) {
+      titleEl.textContent = "작품을 찾을 수 없음";
+      metaEl.textContent = "works.html 링크(id) 또는 data/works.js의 id가 일치하는지 확인해줘.";
+      heroEl.style.display = "none";
+      detailSection.style.display = "none";
+    } else {
+      titleEl.textContent = work.title;
+      metaEl.textContent = work.info || "";
+
+      heroEl.src = imgPath(work.image);
+      heroEl.alt = work.title;
+
+      const details = work.details || [];
+      if (details.length) {
+        detailSection.style.display = "block";
+        detailGrid.innerHTML = details.map(fn => `
+          <button type="button" class="detailBtn" data-src="${fn}">
+            <img src="${imgPath(fn)}" alt="${work.title} 세부">
+          </button>
+        `).join("");
+
+        detailGrid.querySelectorAll("button").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const file = btn.getAttribute("data-src");
+            lightboxImg.src = imgPath(file);
+            lightbox.style.display = "flex";
+          });
+        });
+      }
+    }
+
+    lightbox.addEventListener("click", () => {
+      lightbox.style.display = "none";
+      lightboxImg.src = "";
+    });
+  </script>
+</body>
+</html>
