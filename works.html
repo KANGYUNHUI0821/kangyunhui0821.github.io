@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Works</title>
+  <title>Work — Kang Yunhui</title>
 
   <style>
     @font-face{
@@ -21,7 +21,6 @@
       --muted:#6b6b6b;
       --box:#f1f1f1;
     }
-
     *{ box-sizing:border-box; }
 
     body{
@@ -31,140 +30,105 @@
       font-family:'NanumBarunpen','Gowun Dodum',system-ui,sans-serif;
       padding:72px 84px;
     }
-
     .container{ max-width:760px; margin:0 auto; }
 
     .topbar{
       display:flex;
       justify-content:space-between;
       align-items:baseline;
-      margin-bottom:64px;
+      margin-bottom:44px;
     }
-
     .brand{
       font-size:15px;
       text-decoration:none;
       color:var(--text);
     }
-
     nav a{
       margin-left:22px;
       font-size:13px;
       text-decoration:none;
       color:var(--muted);
     }
-
     nav a.active{
       color:var(--text);
       text-decoration:underline;
       text-underline-offset:6px;
     }
 
-    .page-title{
-      font-size:14px;
-      line-height:2;
-      max-width:680px;
-      margin:0 0 56px;
+    .back{
+      display:inline-block;
+      margin:6px 0 18px;
+      font-size:13px;
       color:var(--muted);
-    }
-
-    .year{ margin-top:56px; }
-    .year:first-of-type{ margin-top:0; }
-
-    .year h2{
-      font-size:15px;
-      font-weight:700;
-      margin:0 0 18px;
-    }
-
-    .worklist{
-      display:flex;
-      flex-direction:column;
-      gap:22px;
-    }
-
-    a.workcard{
-      display:flex;
-      gap:18px;
-      align-items:flex-start;
-
       text-decoration:none;
-      color:inherit;
-
-      border-radius:8px;
-      padding:6px 6px;
-      margin-left:-6px;
-      margin-right:-6px;
-      transition:background .15s ease;
     }
 
-    a.workcard:hover{ background:#f3f3f3; }
+    h1{ margin:0 0 8px; font-size:18px; }
+    .meta{ margin:0 0 18px; font-size:13px; color:var(--muted); line-height:1.8; }
 
-    .thumb{
-      width:140px;
-      flex:0 0 140px;
-      background:var(--box);
-      overflow:hidden;
-    }
-
-    .thumb img{
+    .hero{
       width:100%;
       height:auto;
       display:block;
+      background:var(--box);
     }
 
-    .meta{
-      flex:1;
-      padding-top:2px;
+    .detailSection{ margin-top:22px; display:none; }
+    .detailLabel{ font-size:13px; color:var(--muted); margin-bottom:10px; }
+
+    .detailGrid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:10px;
+    }
+    .detailBtn{
+      border:0;
+      padding:0;
+      background:none;
+      cursor:pointer;
+    }
+    .detailBtn img{
+      width:100%;
+      height:auto;
+      display:block;
+      background:var(--box);
     }
 
-    .title{
-      font-size:14px;
-      font-weight:700;
-      margin-bottom:6px;
-      line-height:1.6;
+    /* Lightbox */
+    #lightbox{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.75);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      z-index:9999;
     }
-
-    .info{
-      font-size:13px;
-      line-height:1.9;
-      color:var(--muted);
-    }
-
-    .divider{
-      height:1px;
-      background:#eaeaea;
-      margin:56px 0;
+    #lightbox img{
+      max-width:96vw;
+      max-height:92vh;
+      display:block;
     }
 
     @media (max-width:640px){
       body{ padding:32px 18px; }
-
       .topbar{
         flex-direction:column;
         align-items:flex-start;
         gap:14px;
-        margin-bottom:40px;
+        margin-bottom:28px;
       }
-
       nav a{
         margin-left:0;
         margin-right:14px;
       }
-
-      .page-title{ margin-bottom:40px; }
-
-      a.workcard{ gap:14px; }
-
-      .thumb{
-        width:110px;
-        flex:0 0 110px;
-      }
-
-      .title{ font-size:13.5px; }
-      .info{ font-size:12.5px; }
+      .detailGrid{ grid-template-columns:repeat(2, 1fr); }
     }
   </style>
+
+  <!-- ✅ 작품 데이터 불러오기 -->
+  <script src="data/works.js"></script>
 </head>
 
 <body>
@@ -181,114 +145,85 @@
     </header>
 
     <main>
-      <p class="page-title">연도별 작업 목록</p>
+      <a class="back" href="works.html">← Works로 돌아가기</a>
 
-      <!-- ===== 2025 ===== -->
-      <section class="year">
-        <h2>2025</h2>
+      <h1 id="title">작품</h1>
+      <p class="meta" id="meta"></p>
 
-        <div class="worklist">
-          <a class="workcard" href="work.html?id=rusted-language">
-            <div class="thumb"><img src="images/녹슨언어.jpg" alt="綠(녹)슨 언어"></div>
-            <div class="meta">
-              <div class="title">綠(녹)슨 언어</div>
-              <div class="info">페이퍼클레이, 유약, 저화도 안료, 칸탈선, 50×50×75(cm), 2025</div>
-            </div>
-          </a>
+      <img id="hero" class="hero" alt="">
 
-          <a class="workcard" href="work.html?id=mokeum-8">
-            <div class="thumb"><img src="images/묵음의 숲 8.jpg" alt="묵음의 숲 8"></div>
-            <div class="meta">
-              <div class="title">묵음의 숲 8</div>
-              <div class="info">페이퍼클레이, 칸탈선, 유약, 37 × 30 × 25(cm), 2025</div>
-            </div>
-          </a>
-
-          <a class="workcard" href="work.html?id=mokeum-6">
-            <div class="thumb"><img src="images/묵음의 숲 6.jpg" alt="묵음의 숲 6"></div>
-            <div class="meta">
-              <div class="title">묵음의 숲 6</div>
-              <div class="info">페이퍼클레이, 칸탈선, 유약, 25 × 21 × 32(cm), 2025</div>
-            </div>
-          </a>
-
-          <a class="workcard" href="work.html?id=mokeum">
-            <div class="thumb"><img src="images/세개.jpg" alt="묵음의 숲"></div>
-            <div class="meta">
-              <div class="title">묵음의 숲</div>
-              <div class="info">페이퍼클레이, 칸탈선, 유약, 가변설치, 2025</div>
-            </div>
-          </a>
-
-          <a class="workcard" href="work.html?id=hands">
-            <div class="thumb"><img src="images/두손모아.jpg" alt="두 손 모아"></div>
-            <div class="meta">
-              <div class="title">두 손 모아</div>
-              <div class="info">백자토, 유약, 아크릴박스, 가변설치, 2025</div>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      <div class="divider"></div>
-
-      <!-- ===== 2024 ===== -->
-      <section class="year">
-        <h2>2024</h2>
-
-        <div class="worklist">
-          <a class="workcard" href="work.html?id=waterdrop">
-            <div class="thumb"><img src="images/물방울.jpg" alt="물방울"></div>
-            <div class="meta">
-              <div class="title">물방울</div>
-              <div class="info">백자토, 섬유, 유약, 가변설치, 2024</div>
-            </div>
-          </a>
-
-          <a class="workcard" href="work.html?id=put-it-on-you">
-            <div class="thumb"><img src="images/put it on you.jpg" alt="put it on you"></div>
-            <div class="meta">
-              <div class="title">put it on you</div>
-              <div class="info">백자토, 유약, 140×160×8(가변설치)(cm), 2024</div>
-            </div>
-          </a>
-
-          <a class="workcard" href="work.html?id=maebyeong">
-            <div class="thumb"><img src="images/매병.JPG" alt="2024.02"></div>
-            <div class="meta">
-              <div class="title">2024.02</div>
-              <div class="info">청자토, 유약, 가변설치, 2024</div>
-            </div>
-          </a>
-
-          <a class="workcard" href="work.html?id=tailbone">
-            <div class="thumb"><img src="images/강윤희,앉지 못하는 꼬리뼈,44x40x60cm,.jpg" alt="앉지 못하는 꼬리뼈"></div>
-            <div class="meta">
-              <div class="title">앉지 못하는 꼬리뼈</div>
-              <div class="info">페이퍼클레이, 유약, 저화도 유약, 저화도 안료, 44×40×60(cm), 2024</div>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      <div class="divider"></div>
-
-      <!-- ===== 2023 ===== -->
-      <section class="year">
-        <h2>2023</h2>
-
-        <div class="worklist">
-          <a class="workcard" href="work.html?id=organizing-mixed">
-            <div class="thumb"><img src="images/썩은이를 정리하는방법.jpg" alt="썩은 이를 정리하는 방법"></div>
-            <div class="meta">
-              <div class="title">썩은 이를 정리하는 방법</div>
-              <div class="info">백자토, 유약, 수금, 가변설치, 2023</div>
-            </div>
-          </a>
-        </div>
-      </section>
-
+      <div id="detailSection" class="detailSection">
+        <div class="detailLabel">세부 이미지</div>
+        <div id="detailGrid" class="detailGrid"></div>
+      </div>
     </main>
   </div>
+
+  <div id="lightbox">
+    <img id="lightboxImg" alt="">
+  </div>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const id = params.get("id");
+
+    const works = window.WORKS || [];
+    const work = works.find(w => w.id === id);
+
+    const titleEl = document.getElementById("title");
+    const metaEl = document.getElementById("meta");
+    const heroEl = document.getElementById("hero");
+
+    const detailSection = document.getElementById("detailSection");
+    const detailGrid = document.getElementById("detailGrid");
+
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightboxImg");
+
+    function imgPath(filename){
+      // ✅ 한글/공백 자동 인코딩
+      return "images/" + encodeURIComponent(filename);
+    }
+
+    if (!work) {
+      titleEl.textContent = "작품을 찾을 수 없음";
+      metaEl.textContent = "works.html 링크(id) 또는 data/works.js의 id가 일치하는지 확인해줘.";
+      heroEl.style.display = "none";
+      detailSection.style.display = "none";
+    } else {
+      document.title = `${work.title} — Kang Yunhui`;
+      titleEl.textContent = work.title;
+      metaEl.textContent = work.info || "";
+
+      heroEl.src = imgPath(work.image);
+      heroEl.alt = work.title;
+
+      const details = work.details || [];
+      if (details.length) {
+        detailSection.style.display = "block";
+        detailGrid.innerHTML = details.map(fn => `
+          <button type="button" class="detailBtn" data-src="${fn}">
+            <img src="${imgPath(fn)}" alt="${work.title} 세부">
+          </button>
+        `).join("");
+
+        detailGrid.querySelectorAll("button").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const file = btn.getAttribute("data-src");
+            lightboxImg.src = imgPath(file);
+            lightbox.style.display = "flex";
+          });
+        });
+      } else {
+        detailSection.style.display = "none";
+      }
+    }
+
+    // 라이트박스 닫기
+    lightbox.addEventListener("click", () => {
+      lightbox.style.display = "none";
+      lightboxImg.src = "";
+    });
+  </script>
 </body>
 </html>
