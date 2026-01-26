@@ -10,7 +10,7 @@ window.WORKS = [
   { id:"waterdrop", title:"물방울", info:"백자토, 섬유, 유약, 가변설치, 2024", year:2024, image:"물방울.jpg", details:["물방울세부.JPG"] },
   { id:"put-it-on-you", title:"put it on you", info:"백자토, 유약, 140×160×8(가변설치)(cm), 2024", year:2024, image:"put it on you.jpg", details:["put it on you 세부.jpg"] },
   { id:"maebyeong", title:"2024.02", info:"청자토, 유약, 가변설치, 2024", year:2024, image:"매병.JPG", details:["매병세부.JPG"] },
-  { id:"tailbone", title:"앉지 못하는 꼬리뼈", info:"페이퍼클레이, 유약, 저화도 유약, 저화도 안료, 44×40×60(cm), 2024", year:2024, image:"강윤희,앉지 못하는 꼬리뼈,44x40x60cm,.jpg", details:["앉지못하는꼬리뼈세부.jpg"] },
+  { id:"tailbone", title:"앉지 못하는 꼬리뼈", info:"페이퍼클레이, 유약, 저화도 유약, 저화도 안료, 44×40×60(cm), 2024", year:2024, image:"강윤희,앉지 못하는 꼬리뼈,44x40x60cm,.jpg", details:["안지못하는꼬리뼈세부.jpg"] },
 
   { id:"organizing-mixed", title:"썩은 이를 정리하는 방법", info:"백자토, 유약, 수금, 가변설치, 2023", year:2023, image:"썩은이를 정리하는방법.jpg", details:[] }
 ];
