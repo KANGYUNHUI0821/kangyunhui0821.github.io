@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Work — Kang Yunhui</title>
+  <title>Works</title>
 
   <style>
     @font-face{
@@ -21,6 +21,7 @@
       --muted:#6b6b6b;
       --box:#f1f1f1;
     }
+
     *{ box-sizing:border-box; }
 
     body{
@@ -30,104 +31,137 @@
       font-family:'NanumBarunpen','Gowun Dodum',system-ui,sans-serif;
       padding:72px 84px;
     }
+
     .container{ max-width:760px; margin:0 auto; }
 
     .topbar{
       display:flex;
       justify-content:space-between;
       align-items:baseline;
-      margin-bottom:44px;
+      margin-bottom:64px;
     }
+
     .brand{
       font-size:15px;
       text-decoration:none;
       color:var(--text);
     }
+
     nav a{
       margin-left:22px;
       font-size:13px;
       text-decoration:none;
       color:var(--muted);
     }
+
     nav a.active{
       color:var(--text);
       text-decoration:underline;
       text-underline-offset:6px;
     }
 
-    .back{
-      display:inline-block;
-      margin:6px 0 18px;
-      font-size:13px;
+    .page-title{
+      font-size:14px;
+      line-height:2;
+      max-width:680px;
+      margin:0 0 56px;
       color:var(--muted);
+    }
+
+    .year{ margin-top:56px; }
+    .year:first-of-type{ margin-top:0; }
+
+    .year h2{
+      font-size:15px;
+      font-weight:700;
+      margin:0 0 18px;
+    }
+
+    .worklist{
+      display:flex;
+      flex-direction:column;
+      gap:22px;
+    }
+
+    a.workcard{
+      display:flex;
+      gap:18px;
+      align-items:flex-start;
       text-decoration:none;
+      color:inherit;
+
+      border-radius:10px;
+      padding:6px 6px;
+      margin-left:-6px;
+      margin-right:-6px;
+      transition:background .15s ease;
     }
+    a.workcard:hover{ background:#f3f3f3; }
 
-    h1{ margin:0 0 8px; font-size:18px; }
-    .meta{ margin:0 0 18px; font-size:13px; color:var(--muted); line-height:1.8; }
-
-    .hero{
+    .thumb{
+      width:140px;
+      flex:0 0 140px;
+      background:var(--box);
+      overflow:hidden;
+    }
+    .thumb img{
       width:100%;
       height:auto;
       display:block;
-      background:var(--box);
     }
 
-    .detailSection{ margin-top:22px; display:none; }
-    .detailLabel{ font-size:13px; color:var(--muted); margin-bottom:10px; }
-
-    .detailGrid{
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:10px;
+    .meta{
+      flex:1;
+      padding-top:2px;
     }
-    .detailBtn{
-      border:0;
-      padding:0;
-      background:none;
-      cursor:pointer;
+    .title{
+      font-size:14px;
+      font-weight:700;
+      margin-bottom:6px;
+      line-height:1.6;
     }
-    .detailBtn img{
-      width:100%;
-      height:auto;
-      display:block;
-      background:var(--box);
+    .info{
+      font-size:13px;
+      line-height:1.9;
+      color:var(--muted);
     }
 
-    /* Lightbox */
-    #lightbox{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.75);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:18px;
-      z-index:9999;
-    }
-    #lightbox img{
-      max-width:96vw;
-      max-height:92vh;
-      display:block;
+    .divider{
+      height:1px;
+      background:#eaeaea;
+      margin:56px 0;
     }
 
     @media (max-width:640px){
       body{ padding:32px 18px; }
+
       .topbar{
         flex-direction:column;
         align-items:flex-start;
         gap:14px;
-        margin-bottom:28px;
+        margin-bottom:40px;
       }
+
       nav a{
         margin-left:0;
         margin-right:14px;
       }
-      .detailGrid{ grid-template-columns:repeat(2, 1fr); }
+
+      .page-title{ margin-bottom:40px; }
+
+      a.workcard{ gap:14px; }
+
+      .thumb{
+        width:110px;
+        flex:0 0 110px;
+      }
+
+      .title{ font-size:13.5px; }
+      .info{ font-size:12.5px; }
     }
   </style>
 
-  <!-- ✅ 작품 데이터 불러오기 -->
+  <!-- 작품 데이터 -->
   <script src="data/works.js"></script>
 </head>
 
@@ -144,86 +178,65 @@
       </nav>
     </header>
 
-   <main>
-  <a class="back" href="works.html">← Works로 돌아가기</a>
+    <main>
+      <p class="page-title">연도별 작업 목록</p>
 
-  <h1 id="title">작품</h1>
-  <p class="meta" id="meta"></p>
-
-  <img id="hero" class="hero" alt="">
-
-  <div id="detailSection" class="detailSection">
-    <div class="detailLabel">세부 이미지</div>
-    <div id="detailGrid" class="detailGrid"></div>
-  </div>
-</main>
-
-  </div>
-
-  <div id="lightbox">
-    <img id="lightboxImg" alt="">
+      <div id="worksRoot"></div>
+    </main>
   </div>
 
   <script>
-    const params = new URLSearchParams(location.search);
-    const id = params.get("id");
-
-    const works = window.WORKS || [];
-    const work = works.find(w => w.id === id);
-
-    const titleEl = document.getElementById("title");
-    const metaEl = document.getElementById("meta");
-    const heroEl = document.getElementById("hero");
-
-    const detailSection = document.getElementById("detailSection");
-    const detailGrid = document.getElementById("detailGrid");
-
-    const lightbox = document.getElementById("lightbox");
-    const lightboxImg = document.getElementById("lightboxImg");
+    // 안전: works.js가 없거나 비었을 때
+    const works = Array.isArray(window.WORKS) ? window.WORKS : [];
+    const root = document.getElementById('worksRoot');
 
     function imgPath(filename){
-      // ✅ 한글/공백 자동 인코딩
       return "images/" + encodeURIComponent(filename);
     }
 
-    if (!work) {
-      titleEl.textContent = "작품을 찾을 수 없음";
-      metaEl.textContent = "works.html 링크(id) 또는 data/works.js의 id가 일치하는지 확인해줘.";
-      heroEl.style.display = "none";
-      detailSection.style.display = "none";
+    if (!works.length) {
+      root.innerHTML = `<p style="color:var(--muted); font-size:13px; line-height:2;">
+        data/works.js를 불러오지 못했어. 파일 경로/이름을 확인해줘.
+      </p>`;
     } else {
-      document.title = `${work.title} — Kang Yunhui`;
-      titleEl.textContent = work.title;
-      metaEl.textContent = work.info || "";
+      // year 내림차순 정렬
+      const years = [...new Set(works.map(w => w.year))].sort((a,b)=>b-a);
 
-      heroEl.src = imgPath(work.image);
-      heroEl.alt = work.title;
+      root.innerHTML = years.map(year => {
+        const items = works
+          .filter(w => w.year === year)
+          .map(w => `
+            <a class="workcard" href="work.html?id=${encodeURIComponent(w.id)}" data-id="${w.id}">
+              <div class="thumb">
+                <img src="${imgPath(w.image)}" alt="${w.title}">
+              </div>
+              <div class="meta">
+                <div class="title">${w.title}</div>
+                <div class="info">${w.info || ""}</div>
+              </div>
+            </a>
+          `).join("");
 
-      const details = work.details || [];
-      if (details.length) {
-        detailSection.style.display = "block";
-        detailGrid.innerHTML = details.map(fn => `
-          <button type="button" class="detailBtn" data-src="${fn}">
-            <img src="${imgPath(fn)}" alt="${work.title} 세부">
-          </button>
-        `).join("");
-
-        detailGrid.querySelectorAll("button").forEach(btn => {
-          btn.addEventListener("click", () => {
-            const file = btn.getAttribute("data-src");
-            lightboxImg.src = imgPath(file);
-            lightbox.style.display = "flex";
-          });
-        });
-      } else {
-        detailSection.style.display = "none";
-      }
+        return `
+          <section class="year">
+            <h2>${year}</h2>
+            <div class="worklist">${items}</div>
+          </section>
+          <div class="divider"></div>
+        `;
+      }).join("").replace(/<div class="divider"><\/div>\s*$/,''); // 마지막 divider 제거
     }
 
-    // 라이트박스 닫기
-    lightbox.addEventListener("click", () => {
-      lightbox.style.display = "none";
-      lightboxImg.src = "";
+    // ✅ 클릭이 어떤 이유로든 꼬여도 무조건 id 붙여서 이동
+    document.addEventListener('click', (e) => {
+      const card = e.target.closest('a.workcard');
+      if (!card) return;
+
+      const id = card.getAttribute('data-id');
+      if (!id) return;
+
+      e.preventDefault();
+      location.href = `work.html?id=${encodeURIComponent(id)}`;
     });
   </script>
 </body>
