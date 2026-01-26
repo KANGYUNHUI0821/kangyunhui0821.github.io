@@ -76,12 +76,44 @@
 
     .detailSection{ margin-top:22px; display:none; }
     .detailLabel{ font-size:13px; color:var(--muted); margin-bottom:10px; }
+.detailGrid{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  padding-bottom:6px;
 
-    .detailGrid{
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:10px;
-    }
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+}
+
+.detailGrid::-webkit-scrollbar{
+  height:8px;
+}
+
+.detailBtn{
+  flex:0 0 220px;   /* 슬라이드 한 장 너비 */
+  scroll-snap-align:start;
+
+  border:0;
+  padding:0;
+  background:none;
+  cursor:pointer;
+}
+
+.detailBtn img{
+  width:100%;
+  height:auto;
+  display:block;
+  background:var(--box);
+}
+
+@media (max-width:640px){
+  .detailBtn{
+    flex-basis:70vw;  /* 모바일에서 한 장 크게 */
+  }
+}
+
+   
     .detailBtn{
       border:0;
       padding:0;
