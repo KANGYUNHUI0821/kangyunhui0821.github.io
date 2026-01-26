@@ -5,6 +5,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Novel</title>
   <style>
+    <script>
+  const params = new URLSearchParams(window.location.search);
+  const novelId = params.get('id');
+
+  const novels = {
+    sanha: {
+      title: '산하엽',
+      content: `
+비가 많이도 적게도 내리지 않는 새벽 7시부터 희연을 서둘러 깨웠다.
+밤새 생각이 나를 잠식하려는 통에 잠을 전혀 잘 수 없었다.
+일렁이던 기분이 극심해져서 속까지 울렁거리는 지경에 이르렀고,
+미안한 마음이었지만 희연을 깨울 수밖에 없었다.
+
+<br><br>
+
+희연: 왜?
+윤희: 산책하러 갈래? 생각 때문에 너무 괴로운 밤을 보냈어.
+희연: 네가 밤새 뒤척이는 것 같더라. 그래, 나가자.
+      잠깐이라도 걷고 들어오자. 요새도 잠을 잘 못 자?
+윤희: 응. 왜인지는 모르겠지만 재작년부터 심해졌네.
+      같이 나가줘서 고마워. 이제 여름이 시작되려고 하는지 덥고 습하다.
+희연: 그러게, 지난주까지만 해도 선선했던 것 같은데.
+      `
+    },
+
+    waterdrop: {
+      title: '물방울',
+      content: `
+“내가 너를 생각할 때면 불빛 두 개와 자욱한 연기가 생각나.”
+
+나는 깊은 생각은 하지 않는다.
+오히려 얕디얕은 생각과 내일 뭐 벌어먹고 살지와 같은
+현실적인 생각들이 내 속을 뒤집어 놓을 뿐이다.
+
+<br><br>
+
+“나는 널 생각하면 곱슬머리와 안경을 쓰면 작아지는 눈이 생각나.
+그리고 마른 몸.”
+
+“마른 몸?”
+      `
+    }
+  };
+
+  const novel = novels[novelId];
+
+  if (!novel) {
+    document.getElementById('novel-title').textContent = '소설을 찾을 수 없습니다';
+    document.getElementById('novel-content').textContent = '잘못된 접근입니다.';
+  } else {
+    document.getElementById('novel-title').textContent = novel.title;
+    document.getElementById('novel-content').innerHTML = novel.content;
+  }
+</script>
+
    body{
   margin:0;
   padding:72px 84px;
