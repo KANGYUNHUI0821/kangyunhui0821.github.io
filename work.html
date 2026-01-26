@@ -71,6 +71,7 @@
       height:auto;
       display:block;
       background:var(--box);
+      cursor:pointer;
     }
 
     .detailSection{ margin-top:22px; display:none; }
@@ -127,7 +128,6 @@
     }
   </style>
 
-  <!-- 작품 데이터 -->
   <script src="data/works.js"></script>
 </head>
 
@@ -167,7 +167,7 @@
     const params = new URLSearchParams(location.search);
     const id = params.get("id");
 
-    const works = window.WORKS || [];
+    const works = Array.isArray(window.WORKS) ? window.WORKS : [];
     const work = works.find(w => w.id === id);
 
     const titleEl = document.getElementById("title");
@@ -184,19 +184,33 @@
       return "images/" + encodeURIComponent(filename);
     }
 
-    if (!work) {
+    function openLightbox(filename){
+      lightboxImg.src = imgPath(filename);
+      lightbox.style.display = "flex";
+    }
+
+    if (!id) {
+      titleEl.textContent = "작품을 찾을 수 없음";
+      metaEl.textContent = "Works 목록에서 작품을 눌러 들어와야 해.";
+      heroEl.style.display = "none";
+      detailSection.style.display = "none";
+    } else if (!work) {
       titleEl.textContent = "작품을 찾을 수 없음";
       metaEl.textContent = "works.html 링크(id) 또는 data/works.js의 id가 일치하는지 확인해줘.";
       heroEl.style.display = "none";
       detailSection.style.display = "none";
     } else {
+      document.title = `${work.title} — Kang Yunhui`;
       titleEl.textContent = work.title;
       metaEl.textContent = work.info || "";
 
       heroEl.src = imgPath(work.image);
       heroEl.alt = work.title;
 
-      const details = work.details || [];
+      // 대표 이미지 클릭하면 확대
+      heroEl.addEventListener("click", () => openLightbox(work.image));
+
+      const details = Array.isArray(work.details) ? work.details : [];
       if (details.length) {
         detailSection.style.display = "block";
         detailGrid.innerHTML = details.map(fn => `
@@ -207,14 +221,15 @@
 
         detailGrid.querySelectorAll("button").forEach(btn => {
           btn.addEventListener("click", () => {
-            const file = btn.getAttribute("data-src");
-            lightboxImg.src = imgPath(file);
-            lightbox.style.display = "flex";
+            openLightbox(btn.getAttribute("data-src"));
           });
         });
+      } else {
+        detailSection.style.display = "none";
       }
     }
 
+    // 라이트박스 닫기
     lightbox.addEventListener("click", () => {
       lightbox.style.display = "none";
       lightboxImg.src = "";
