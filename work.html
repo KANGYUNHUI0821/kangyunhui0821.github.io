@@ -82,16 +82,20 @@
   overflow-x:auto;
   scroll-snap-type:x mandatory;
   -webkit-overflow-scrolling:touch;
+
+  white-space:nowrap;
+  padding:4px 0 10px;
 }
+
 
 .detailGrid::-webkit-scrollbar{
   height:8px;
 }
 
 .detailBtn{
-  flex:0 0 220px;   /* 슬라이드 한 장 너비 */
+  flex:0 0 220px;
+  min-width:220px;
   scroll-snap-align:start;
-
   border:0;
   padding:0;
   background:none;
