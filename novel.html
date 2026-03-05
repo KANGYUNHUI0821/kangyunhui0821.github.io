@@ -106,13 +106,13 @@
       </div>
       <section class="related">
         <h2>연관 작품</h2>
-        <a class="related-item" href="work.html?id=waterdrop">
+        <a class="related-item" href="novel.html?id=waterdrop">
           <img class="related-thumb" src="images/물방울.jpg" alt="물방울">
-          <div class="related-meta"><div class="related-name">물방울</div><div class="related-sub">작품 보기 →</div></div>
+          <div class="related-meta"><div class="related-name">물방울</div><div class="related-sub">소설 읽기 →</div></div>
         </a>
-        <a class="related-item" href="work.html?id=uitae">
+        <a class="related-item" href="novel.html?id=uitae">
           <img class="related-thumb" src="images/의태.jpg" alt="의태">
-          <div class="related-meta"><div class="related-name">의태</div><div class="related-sub">작품 보기 →</div></div>
+          <div class="related-meta"><div class="related-name">의태</div><div class="related-sub">소설 읽기 →</div></div>
         </a>
       </section>
     </section>
@@ -147,10 +147,19 @@
       </div>
       <section class="related">
         <h2>연관 작품</h2>
-        ... (사진들) ...
-      </section> </section> <section id="uitae" class="novel-section">
+        <a class="related-item" href="novel.html?id=sanha">
+          <img class="related-thumb" src="images/산하엽.jpg" alt="산하엽">
+          <div class="related-meta"><div class="related-name">산하엽</div><div class="related-sub">소설 읽기 →</div></div>
+        </a>
+        <a class="related-item" href="novel.html?id=uitae">
+          <img class="related-thumb" src="images/의태.jpg" alt="의태">
+          <div class="related-meta"><div class="related-name">의태</div><div class="related-sub">소설 읽기 →</div></div>
+        </a>
+      </section>
+    </section>
+
+    <section id="uitae" class="novel-section">
       <h1>의태</h1>
-  
       <div class="novel-text">
         나의 옆에 누워있던 예희는 끊임없이 잔기침을 했다. 예희에게 도움이 될까 싶어 자리에서 일어나 가습기를 켜고 따뜻한 물 한 잔을 준비해서 탁상 위에 두었다. 
         <br><br>
@@ -180,13 +189,13 @@
       </div>
       <section class="related">
         <h2>연관 작품</h2>
-        <a class="related-item" href="work.html?id=sanha">
+        <a class="related-item" href="novel.html?id=sanha">
           <img class="related-thumb" src="images/산하엽.jpg" alt="산하엽">
-          <div class="related-meta"><div class="related-name">산하엽</div><div class="related-sub">작품 보기 →</div></div>
+          <div class="related-meta"><div class="related-name">산하엽</div><div class="related-sub">소설 읽기 →</div></div>
         </a>
-        <a class="related-item" href="work.html?id=waterdrop">
+        <a class="related-item" href="novel.html?id=waterdrop">
           <img class="related-thumb" src="images/물방울.jpg" alt="물방울">
-          <div class="related-meta"><div class="related-name">물방울</div><div class="related-sub">작품 보기 →</div></div>
+          <div class="related-meta"><div class="related-name">물방울</div><div class="related-sub">소설 읽기 →</div></div>
         </a>
       </section>
     </section>
@@ -204,9 +213,10 @@
     // 기본값은 sanha
     let targetId = id || 'sanha';
 
-    // 모든 섹션 숨기고, 주소와 맞는 섹션만 보이기
+    // 모든 섹션 숨기기
     document.querySelectorAll('.novel-section').forEach(sec => sec.classList.remove('active'));
     
+    // 주소창 id와 일치하는 섹션만 보이기
     const target = document.getElementById(targetId);
     if (target) {
       target.classList.add('active');
