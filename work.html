@@ -235,8 +235,7 @@
   <div id="lightbox">
     <img id="lightboxImg" alt="">
   </div>
-
- <script>
+<script>
   const params = new URLSearchParams(location.search);
   const id = params.get("id");
 
@@ -245,35 +244,48 @@
 
   const titleEl = document.getElementById("title");
   const metaEl = document.getElementById("meta");
-
   const slider = document.getElementById("slider");
   const dots = document.getElementById("dots");
-
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightboxImg");
+
+  // --- 팝업 슬라이드용 변수 ---
+  let currentIdx = 0;
+  let allImages = [];
 
   function imgPath(filename){
     return "images/" + encodeURIComponent(filename);
   }
 
-  function openLightbox(filename){
-    lightboxImg.src = imgPath(filename);
+  // 팝업 열기
+  function openLightbox(index){
+    currentIdx = index;
+    updateLightboxImage();
     lightbox.style.display = "flex";
+    document.body.style.overflow = "hidden"; // 배경 스크롤 잠금
   }
 
-  function setActiveDot(index){
-    const all = dots.querySelectorAll('.dot');
-    all.forEach((d,i)=> d.classList.toggle('active', i===index));
+  // 팝업 이미지 업데이트
+  function updateLightboxImage() {
+    lightboxImg.src = imgPath(allImages[currentIdx]);
   }
 
-  if (!id) {
+  // 다음/이전 사진으로 넘기기
+  function prevImage(e) {
+    e.stopPropagation(); // 팝업 닫힘 방지
+    currentIdx = (currentIdx === 0) ? allImages.length - 1 : currentIdx - 1;
+    updateLightboxImage();
+  }
+
+  function nextImage(e) {
+    e.stopPropagation(); // 팝업 닫힘 방지
+    currentIdx = (currentIdx === allImages.length - 1) ? 0 : currentIdx + 1;
+    updateLightboxImage();
+  }
+
+  if (!id || !work) {
     titleEl.textContent = "작품을 찾을 수 없음";
-    metaEl.textContent = "Works 목록에서 작품을 눌러 들어와야 해.";
-    slider.style.display = "none";
-    dots.style.display = "none";
-  } else if (!work) {
-    titleEl.textContent = "작품을 찾을 수 없음";
-    metaEl.textContent = "works.html 링크(id) 또는 data/works.js의 id가 일치하는지 확인해줘.";
+    metaEl.textContent = "ID를 확인해주세요.";
     slider.style.display = "none";
     dots.style.display = "none";
   } else {
@@ -281,40 +293,39 @@
     titleEl.textContent = work.title;
     metaEl.textContent = work.info || "";
 
-    // 대표 + 세부를 한 배열로 합치기
-    const images = [work.image, ...(Array.isArray(work.details) ? work.details : [])];
+    // 이미지 배열 합치기
+    allImages = [work.image, ...(Array.isArray(work.details) ? work.details : [])];
 
-    slider.innerHTML = images.map((fn, idx) => `
+    slider.innerHTML = allImages.map((fn, idx) => `
       <div class="slide">
-        <img src="${imgPath(fn)}" alt="${work.title} 이미지 ${idx+1}" data-src="${fn}">
+        <img src="${imgPath(fn)}" alt="${work.title} ${idx+1}" onclick="openLightbox(${idx})">
       </div>
     `).join("");
 
-    // dots 생성(이미지 2장 이상일 때만)
-    if (images.length >= 2) {
-      dots.innerHTML = images.map((_,i)=> `<span class="dot ${i===0?'active':''}"></span>`).join("");
-    } else {
-      dots.style.display = "none";
+    if (allImages.length >= 2) {
+      dots.innerHTML = allImages.map((_,i)=> `<span class="dot ${i===0?'active':''}"></span>`).join("");
+      
+      // 팝업창에 화살표 버튼 추가
+      lightbox.innerHTML = `
+        <button onclick="prevImage(event)" style="position:absolute; left:20px; background:none; border:none; color:white; font-size:40px; cursor:pointer;">〈</button>
+        <img id="lightboxImg" src="" alt="">
+        <button onclick="nextImage(event)" style="position:absolute; right:20px; background:none; border:none; color:white; font-size:40px; cursor:pointer;">〉</button>
+      `;
     }
 
-    // 이미지 클릭하면 확대
-    slider.querySelectorAll('img').forEach(img => {
-      img.addEventListener('click', () => openLightbox(img.dataset.src));
-    });
-
-    // 스크롤 위치로 현재 슬라이드 인디케이터 업데이트
+    // 스크롤 시 점(dot) 업데이트
     slider.addEventListener('scroll', () => {
       const index = Math.round(slider.scrollLeft / slider.clientWidth);
-      if (images.length >= 2) setActiveDot(Math.max(0, Math.min(images.length-1, index)));
+      const allDots = dots.querySelectorAll('.dot');
+      allDots.forEach((d,i)=> d.classList.toggle('active', i===index));
     }, { passive:true });
   }
 
-  // 라이트박스 닫기
+  // 라이트박스 닫기 (이미지 바깥 검은 배경 클릭 시)
   lightbox.addEventListener("click", () => {
     lightbox.style.display = "none";
-    lightboxImg.src = "";
+    document.body.style.overflow = "auto";
   });
 </script>
-
 </body>
 </html>
