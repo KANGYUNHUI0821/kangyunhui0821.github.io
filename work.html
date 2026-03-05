@@ -103,8 +103,9 @@
     let allImages = [];
 
     function imgPath(filename) {
-      return "images/" + encodeURIComponent(filename);
-    }
+     function imgPath(filename) {
+  return "images/" + filename;
+}
 
     // 팝업 열기
     function openLightbox(index) {
