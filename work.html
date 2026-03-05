@@ -130,16 +130,37 @@
     }
 
     /* Lightbox */
-    #lightbox{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.75);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:18px;
-      z-index:9999;
+   /* Lightbox 및 화살표 디자인 */
+    #lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
     }
+    #lightboxImg {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+    }
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: white;
+      font-size: 50px;
+      cursor: pointer;
+      padding: 20px;
+      z-index: 10001;
+      user-select: none;
+    }
+    .prev { left: 10px; }
+    .next { right: 10px; }
+    .nav-btn:hover { color: #ccc; }
     #lightbox img{
       max-width:96vw;
       max-height:92vh;
@@ -232,13 +253,14 @@
     </main>
   </div>
 
-  <div id="lightbox">
-    <img id="lightboxImg" alt="">
+<div id="lightbox">
+    <button class="nav-btn prev" onclick="moveImg(-1, event)">〈</button>
+    <img id="lightboxImg" alt="확대 이미지">
+    <button class="nav-btn next" onclick="moveImg(1, event)">〉</button>
   </div>
 <script>
   const params = new URLSearchParams(location.search);
   const id = params.get("id");
-
   const works = Array.isArray(window.WORKS) ? window.WORKS : [];
   const work = works.find(w => w.id === id);
 
@@ -249,79 +271,61 @@
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightboxImg");
 
-  // --- 팝업 슬라이드용 변수 ---
   let currentIdx = 0;
   let allImages = [];
 
-  function imgPath(filename){
+  function imgPath(filename) {
     return "images/" + encodeURIComponent(filename);
   }
 
   // 팝업 열기
-  function openLightbox(index){
+  window.openLightbox = function(index) {
     currentIdx = index;
-    updateLightboxImage();
-    lightbox.style.display = "flex";
-    document.body.style.overflow = "hidden"; // 배경 스크롤 잠금
-  }
-
-  // 팝업 이미지 업데이트
-  function updateLightboxImage() {
     lightboxImg.src = imgPath(allImages[currentIdx]);
-  }
+    lightbox.style.display = "flex";
+    document.body.style.overflow = "hidden";
+  };
 
-  // 다음/이전 사진으로 넘기기
-  function prevImage(e) {
-    e.stopPropagation(); // 팝업 닫힘 방지
-    currentIdx = (currentIdx === 0) ? allImages.length - 1 : currentIdx - 1;
-    updateLightboxImage();
-  }
+  // 팝업 안에서 사진 넘기기
+  window.moveImg = function(step, event) {
+    if (event) event.stopPropagation(); // 배경 클릭 닫힘 방지
+    currentIdx += step;
+    if (currentIdx < 0) currentIdx = allImages.length - 1;
+    if (currentIdx >= allImages.length) currentIdx = 0;
+    lightboxImg.src = imgPath(allImages[currentIdx]);
+  };
 
-  function nextImage(e) {
-    e.stopPropagation(); // 팝업 닫힘 방지
-    currentIdx = (currentIdx === allImages.length - 1) ? 0 : currentIdx + 1;
-    updateLightboxImage();
-  }
-
-  if (!id || !work) {
-    titleEl.textContent = "작품을 찾을 수 없음";
-    metaEl.textContent = "ID를 확인해주세요.";
-    slider.style.display = "none";
-    dots.style.display = "none";
-  } else {
+  if (work) {
     document.title = `${work.title} — Kang Yunhui`;
     titleEl.textContent = work.title;
     metaEl.textContent = work.info || "";
 
-    // 이미지 배열 합치기
     allImages = [work.image, ...(Array.isArray(work.details) ? work.details : [])];
 
+    // 슬라이더 생성
     slider.innerHTML = allImages.map((fn, idx) => `
       <div class="slide">
-        <img src="${imgPath(fn)}" alt="${work.title} ${idx+1}" onclick="openLightbox(${idx})">
+        <img src="${imgPath(fn)}" alt="이미지" onclick="openLightbox(${idx})">
       </div>
     `).join("");
 
+    // 점(dots) 및 화살표 표시 여부
     if (allImages.length >= 2) {
-      dots.innerHTML = allImages.map((_,i)=> `<span class="dot ${i===0?'active':''}"></span>`).join("");
-      
-      // 팝업창에 화살표 버튼 추가
-      lightbox.innerHTML = `
-        <button onclick="prevImage(event)" style="position:absolute; left:20px; background:none; border:none; color:white; font-size:40px; cursor:pointer;">〈</button>
-        <img id="lightboxImg" src="" alt="">
-        <button onclick="nextImage(event)" style="position:absolute; right:20px; background:none; border:none; color:white; font-size:40px; cursor:pointer;">〉</button>
-      `;
+      dots.innerHTML = allImages.map((_, i) => `<span class="dot ${i===0?'active':''}"></span>`).join("");
+      document.querySelectorAll('.nav-btn').forEach(btn => btn.style.display = 'block');
+    } else {
+      document.querySelectorAll('.nav-btn').forEach(btn => btn.style.display = 'none');
     }
-
-    // 스크롤 시 점(dot) 업데이트
-    slider.addEventListener('scroll', () => {
-      const index = Math.round(slider.scrollLeft / slider.clientWidth);
-      const allDots = dots.querySelectorAll('.dot');
-      allDots.forEach((d,i)=> d.classList.toggle('active', i===index));
-    }, { passive:true });
   }
 
-  // 라이트박스 닫기 (이미지 바깥 검은 배경 클릭 시)
+  // 스크롤 시 점(dot) 업데이트
+  slider.addEventListener('scroll', () => {
+    const index = Math.round(slider.scrollLeft / slider.clientWidth);
+    const allDots = dots.querySelectorAll('.dot');
+    allDots.forEach((d, i) => d.classList.toggle('active', i === index));
+  }, { passive: true });
+
+  // 라이트박스 닫기 (배경 클릭 시)
   lightbox.addEventListener("click", () => {
     lightbox.style.display = "none";
     document.body.style.overflow = "auto";
