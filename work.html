@@ -4,229 +4,60 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Work — Kang Yunhui</title>
-
   <style>
-    @font-face{
-      font-family:'NanumBarunpen';
-      src:url('https://cdn.jsdelivr.net/gh/fontbee/font@main/NAVER/NanumBarunpen.woff') format('woff');
-      font-weight:400;
-      font-style:normal;
-      font-display:swap;
-    }
+    @font-face{ font-family:'NanumBarunpen'; src:url('https://cdn.jsdelivr.net/gh/fontbee/font@main/NAVER/NanumBarunpen.woff') format('woff'); font-weight:400; font-style:normal; font-display:swap; }
     @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
 
-    :root{
-      --bg:#fbfbfb;
-      --text:#111;
-      --muted:#6b6b6b;
-      --box:#f1f1f1;
-    }
+    :root{ --bg:#fbfbfb; --text:#111; --muted:#6b6b6b; --box:#f1f1f1; }
     *{ box-sizing:border-box; }
-
-    body{
-      margin:0;
-      background:var(--bg);
-      color:var(--text);
-      font-family:'NanumBarunpen','Gowun Dodum',system-ui,sans-serif;
-      padding:72px 84px;
-    }
+    body{ margin:0; background:var(--bg); color:var(--text); font-family:'NanumBarunpen','Gowun Dodum',system-ui,sans-serif; padding:72px 84px; }
     .container{ max-width:760px; margin:0 auto; }
-
-    .topbar{
-      display:flex;
-      justify-content:space-between;
-      align-items:baseline;
-      margin-bottom:44px;
-    }
-    .brand{
-      font-size:15px;
-      text-decoration:none;
-      color:var(--text);
-    }
-    nav a{
-      margin-left:22px;
-      font-size:13px;
-      text-decoration:none;
-      color:var(--muted);
-    }
-    nav a.active{
-      color:var(--text);
-      text-decoration:underline;
-      text-underline-offset:6px;
-    }
-
-    .back{
-      display:inline-block;
-      margin:6px 0 18px;
-      font-size:13px;
-      color:var(--muted);
-      text-decoration:none;
-    }
-
+    .topbar{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:44px; }
+    .brand{ font-size:15px; text-decoration:none; color:var(--text); }
+    nav a{ margin-left:22px; font-size:13px; text-decoration:none; color:var(--muted); }
+    nav a.active{ color:var(--text); text-decoration:underline; text-underline-offset:6px; }
+    .back{ display:inline-block; margin:6px 0 18px; font-size:13px; color:var(--muted); text-decoration:none; }
     h1{ margin:0 0 8px; font-size:18px; }
     .meta{ margin:0 0 18px; font-size:13px; color:var(--muted); line-height:1.8; }
 
-    .hero{
-      width:100%;
-      height:auto;
-      display:block;
-      background:var(--box);
-      cursor:pointer;
-    }
+    /* 메인 슬라이더 스타일 */
+    .slider{ display:flex; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; gap:10px; background:transparent; }
+    .slide{ flex:0 0 100%; scroll-snap-align:start; }
+    .slide img{ width:100%; height:auto; display:block; background:var(--box); cursor:pointer; }
+    .slider::-webkit-scrollbar{ height:8px; }
+    .dots{ display:flex; gap:6px; margin:10px 0 20px; }
+    .dot{ width:6px; height:6px; border-radius:999px; background:#d7d7d7; }
+    .dot.active{ background:#111; }
 
-    .detailSection{ margin-top:22px; display:none; }
-    .detailLabel{ font-size:13px; color:var(--muted); margin-bottom:10px; }
-.detailGrid{
-  display:flex;
-  gap:10px;
-  overflow-x:auto;
-  scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling:touch;
-
-  white-space:nowrap;
-  padding:4px 0 10px;
-}
-
-
-.detailGrid::-webkit-scrollbar{
-  height:8px;
-}
-
-.detailBtn{
-  flex:0 0 220px;
-  min-width:220px;
-  scroll-snap-align:start;
-  border:0;
-  padding:0;
-  background:none;
-  cursor:pointer;
-}
-
-.detailBtn img{
-  width:100%;
-  height:auto;
-  display:block;
-  background:var(--box);
-}
-
-@media (max-width:640px){
-  .detailBtn{
-    flex-basis:70vw;  /* 모바일에서 한 장 크게 */
-  }
-}
-
-   
-    .detailBtn{
-      border:0;
-      padding:0;
-      background:none;
-      cursor:pointer;
-    }
-    .detailBtn img{
-      width:100%;
-      height:auto;
-      display:block;
-      background:var(--box);
-    }
-
-    /* Lightbox */
-   /* Lightbox 및 화살표 디자인 */
+    /* 라이트박스 팝업 - 회색 화면 방지를 위한 레이아웃 */
     #lightbox {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.85);
-      display: none;
-      align-items: center;
-      justify-content: center;
+      position: fixed; inset: 0; background: rgba(0,0,0,0.9);
+      display: none; align-items: center; justify-content: center;
       z-index: 9999;
     }
-    #lightboxImg {
-      max-width: 90vw;
-      max-height: 85vh;
-      object-fit: contain;
+    #lightbox img {
+      max-width: 90%; max-height: 85%; object-fit: contain;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
     }
+    /* 화살표 버튼 */
     .nav-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      color: white;
-      font-size: 50px;
-      cursor: pointer;
-      padding: 20px;
-      z-index: 10001;
-      user-select: none;
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: none; border: none; color: white; font-size: 60px;
+      cursor: pointer; padding: 20px; z-index: 10001; user-select: none;
     }
     .prev { left: 10px; }
     .next { right: 10px; }
-    .nav-btn:hover { color: #ccc; }
-    #lightbox img{
-      max-width:96vw;
-      max-height:92vh;
-      display:block;
-    }
+    .nav-btn:hover { color: #aaa; }
 
     @media (max-width:640px){
       body{ padding:32px 18px; }
-      .topbar{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:14px;
-        margin-bottom:28px;
-      }
-      nav a{
-        margin-left:0;
-        margin-right:14px;
-      }
-      .detailGrid{ grid-template-columns:repeat(2, 1fr); }
+      .topbar{ flex-direction:column; align-items:flex-start; gap:14px; margin-bottom:28px; }
+      nav a{ margin-left:0; margin-right:14px; }
+      .nav-btn { font-size: 40px; padding: 10px; }
     }
-    /* ===== Main slider ===== */
-.slider{
-  display:flex;
-  overflow-x:auto;
-  scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling:touch;
-
-  gap:10px;
-  background:transparent;
-}
-
-.slide{
-  flex:0 0 100%;
-  scroll-snap-align:start;
-}
-
-.slide img{
-  width:100%;
-  height:auto;
-  display:block;
-  background:var(--box);
-  cursor:pointer;
-}
-
-/* 스크롤바(원하면 지워도 됨) */
-.slider::-webkit-scrollbar{ height:8px; }
-
-/* 슬라이드 인디케이터 */
-.dots{
-  display:flex;
-  gap:6px;
-  margin:10px 0 0;
-}
-.dot{
-  width:6px;
-  height:6px;
-  border-radius:999px;
-  background:#d7d7d7;
-}
-.dot.active{ background:#111; }
-
   </style>
-
   <script src="data/works.js"></script>
 </head>
-
 <body>
   <div class="container">
     <header class="topbar">
@@ -242,94 +73,91 @@
 
     <main>
       <a class="back" href="works.html">← Works로 돌아가기</a>
-
       <h1 id="title">작품</h1>
       <p class="meta" id="meta"></p>
-
-     <div id="slider" class="slider" aria-label="작품 이미지 슬라이드"></div>
-<div id="dots" class="dots" aria-hidden="true"></div>
-
-      
+      <div id="slider" class="slider"></div>
+      <div id="dots" class="dots"></div>
     </main>
   </div>
 
-<div id="lightbox">
-    <button class="nav-btn prev" onclick="moveImg(-1, event)">〈</button>
-    <img id="lightboxImg" alt="확대 이미지">
-    <button class="nav-btn next" onclick="moveImg(1, event)">〉</button>
+  <div id="lightbox">
+    <button class="nav-btn prev" id="prevBtn">〈</button>
+    <img id="lightboxImg" src="" alt="확대 이미지">
+    <button class="nav-btn next" id="nextBtn">〉</button>
   </div>
-<script>
-  const params = new URLSearchParams(location.search);
-  const id = params.get("id");
-  const works = Array.isArray(window.WORKS) ? window.WORKS : [];
-  const work = works.find(w => w.id === id);
 
-  const titleEl = document.getElementById("title");
-  const metaEl = document.getElementById("meta");
-  const slider = document.getElementById("slider");
-  const dots = document.getElementById("dots");
-  const lightbox = document.getElementById("lightbox");
-  const lightboxImg = document.getElementById("lightboxImg");
+  <script>
+    const params = new URLSearchParams(location.search);
+    const id = params.get("id");
+    const works = Array.isArray(window.WORKS) ? window.WORKS : [];
+    const work = works.find(w => w.id === id);
 
-  let currentIdx = 0;
-  let allImages = [];
+    const titleEl = document.getElementById("title");
+    const metaEl = document.getElementById("meta");
+    const slider = document.getElementById("slider");
+    const dots = document.getElementById("dots");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightboxImg");
 
-  function imgPath(filename) {
-    return "images/" + encodeURIComponent(filename);
-  }
+    let currentIdx = 0;
+    let allImages = [];
 
-  // 팝업 열기
-  window.openLightbox = function(index) {
-    currentIdx = index;
-    lightboxImg.src = imgPath(allImages[currentIdx]);
-    lightbox.style.display = "flex";
-    document.body.style.overflow = "hidden";
-  };
-
-  // 팝업 안에서 사진 넘기기
-  window.moveImg = function(step, event) {
-    if (event) event.stopPropagation(); // 배경 클릭 닫힘 방지
-    currentIdx += step;
-    if (currentIdx < 0) currentIdx = allImages.length - 1;
-    if (currentIdx >= allImages.length) currentIdx = 0;
-    lightboxImg.src = imgPath(allImages[currentIdx]);
-  };
-
-  if (work) {
-    document.title = `${work.title} — Kang Yunhui`;
-    titleEl.textContent = work.title;
-    metaEl.textContent = work.info || "";
-
-    allImages = [work.image, ...(Array.isArray(work.details) ? work.details : [])];
-
-    // 슬라이더 생성
-    slider.innerHTML = allImages.map((fn, idx) => `
-      <div class="slide">
-        <img src="${imgPath(fn)}" alt="이미지" onclick="openLightbox(${idx})">
-      </div>
-    `).join("");
-
-    // 점(dots) 및 화살표 표시 여부
-    if (allImages.length >= 2) {
-      dots.innerHTML = allImages.map((_, i) => `<span class="dot ${i===0?'active':''}"></span>`).join("");
-      document.querySelectorAll('.nav-btn').forEach(btn => btn.style.display = 'block');
-    } else {
-      document.querySelectorAll('.nav-btn').forEach(btn => btn.style.display = 'none');
+    function imgPath(filename) {
+      return "images/" + encodeURIComponent(filename);
     }
-  }
 
-  // 스크롤 시 점(dot) 업데이트
-  slider.addEventListener('scroll', () => {
-    const index = Math.round(slider.scrollLeft / slider.clientWidth);
-    const allDots = dots.querySelectorAll('.dot');
-    allDots.forEach((d, i) => d.classList.toggle('active', i === index));
-  }, { passive: true });
+    // 팝업 열기
+    function openLightbox(index) {
+      currentIdx = index;
+      lightboxImg.src = imgPath(allImages[currentIdx]);
+      lightbox.style.display = "flex";
+      document.body.style.overflow = "hidden";
+    }
 
-  // 라이트박스 닫기 (배경 클릭 시)
-  lightbox.addEventListener("click", () => {
-    lightbox.style.display = "none";
-    document.body.style.overflow = "auto";
-  });
-</script>
+    // 사진 넘기기 함수
+    function moveImg(step, event) {
+      if (event) event.stopPropagation();
+      currentIdx += step;
+      if (currentIdx < 0) currentIdx = allImages.length - 1;
+      if (currentIdx >= allImages.length) currentIdx = 0;
+      lightboxImg.src = imgPath(allImages[currentIdx]);
+    }
+
+    if (work) {
+      document.title = `${work.title} — Kang Yunhui`;
+      titleEl.textContent = work.title;
+      metaEl.textContent = work.info || "";
+      allImages = [work.image, ...(Array.isArray(work.details) ? work.details : [])];
+
+      slider.innerHTML = allImages.map((fn, idx) => `
+        <div class="slide">
+          <img src="${imgPath(fn)}" alt="이미지" onclick="openLightbox(${idx})">
+        </div>
+      `).join("");
+
+      if (allImages.length >= 2) {
+        dots.innerHTML = allImages.map((_, i) => `<span class="dot ${i===0?'active':''}"></span>`).join("");
+      } else {
+        document.getElementById("prevBtn").style.display = "none";
+        document.getElementById("nextBtn").style.display = "none";
+      }
+    }
+
+    // 버튼 이벤트 연결 (직접 작성)
+    document.getElementById("prevBtn").addEventListener("click", (e) => moveImg(-1, e));
+    document.getElementById("nextBtn").addEventListener("click", (e) => moveImg(1, e));
+
+    // 스크롤 시 점 업데이트
+    slider.addEventListener('scroll', () => {
+      const index = Math.round(slider.scrollLeft / slider.clientWidth);
+      document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === index));
+    }, { passive: true });
+
+    // 닫기
+    lightbox.addEventListener("click", () => {
+      lightbox.style.display = "none";
+      document.body.style.overflow = "auto";
+    });
+  </script>
 </body>
 </html>
