@@ -2,10 +2,69 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>Works</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact — Kang Yunhui</title>
+  <style>
+    @font-face{ font-family:'NanumBarunpen'; src:url('https://cdn.jsdelivr.net/gh/fontbee/font@main/NAVER/NanumBarunpen.woff') format('woff'); font-weight:400; font-style:normal; font-display:swap; }
+    @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+    :root{ --bg:#fbfbfb; --text:#111; --muted:#6b6b6b; --box:#f1f1f1; }
+    *{ box-sizing:border-box; }
+    body{ margin:0; background:var(--bg); color:var(--text); font-family:'NanumBarunpen','Gowun Dodum',system-ui,sans-serif; padding:72px 84px; }
+    .container{ max-width:760px; margin:0 auto; min-height: 60vh; display: flex; flex-direction: column; }
+
+    .topbar{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:80px; }
+    .brand{ font-size:15px; text-decoration:none; color:var(--text); font-weight:bold; }
+    nav a{ margin-left:22px; font-size:13px; text-decoration:none; color:var(--muted); }
+    nav a.active{ color:var(--text); text-decoration:underline; text-underline-offset:6px; }
+
+    .contact-wrap { margin-top: 40px; }
+    .contact-title { font-size: 12px; font-weight: bold; color: var(--muted); letter-spacing: 0.15em; margin-bottom: 30px; }
+    .contact-msg { font-size: 16px; line-height: 1.8; margin-bottom: 40px; word-break: keep-all; }
+    
+    .contact-info { list-style: none; padding: 0; margin: 0; }
+    .contact-info li { margin-bottom: 15px; font-size: 15px; display: flex; align-items: center; }
+    .contact-label { display: inline-block; width: 100px; color: var(--muted); font-size: 13px; font-weight: bold; letter-spacing: 0.1em; }
+    .contact-link { color: var(--text); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+    .contact-link:hover { border-bottom: 1px solid var(--text); }
+
+    @media (max-width:640px){ body{ padding:32px 18px; } .topbar{ flex-direction:column; align-items:flex-start; gap:14px; margin-bottom:50px; } nav a{ margin-left:0; margin-right:14px; } .contact-label { width: 90px; } }
+  </style>
 </head>
 <body>
-  <h1>Works</h1>
+  <div class="container">
+    
+    <header class="topbar">
+      <a class="brand" href="index.html">강윤희 KANG YUNHUI</a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="works.html">Works</a>
+        <a href="about.html">About</a>
+        <a href="cv.html">CV</a>
+        <a href="contact.html" class="active">Contact</a>
+      </nav>
+    </header>
+
+    <main class="contact-wrap">
+      <div class="contact-title">CONTACT</div>
+      
+      <div class="contact-msg">
+        작업 문의, 전시 기획 및 기타 협업 제안은<br>
+        아래 이메일로 편하게 연락 부탁드립니다.
+      </div>
+
+      <ul class="contact-info">
+        <li>
+          <span class="contact-label">EMAIL</span>
+          <a class="contact-link" href="mailto:rkd0708@naver.com">rkd0708@naver.com</a>
+        </li>
+        <li>
+          <span class="contact-label">INSTAGRAM</span>
+          <a class="contact-link" href="https://instagram.com/YI_craft_" target="_blank">@YI_craft_</a>
+        </li>
+      </ul>
+    </main>
+    
+  </div>
 </body>
 </html>
-
