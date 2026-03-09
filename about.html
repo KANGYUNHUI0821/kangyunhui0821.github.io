@@ -2,10 +2,61 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>Works</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About — Kang Yunhui</title>
+  <style>
+    /* 전체 사이트와 동일한 예쁜 폰트와 여백 설정 */
+    @font-face{ font-family:'NanumBarunpen'; src:url('https://cdn.jsdelivr.net/gh/fontbee/font@main/NAVER/NanumBarunpen.woff') format('woff'); font-weight:400; font-style:normal; font-display:swap; }
+    @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+    
+    :root{ --bg:#fbfbfb; --text:#111; --muted:#6b6b6b; --box:#f1f1f1; }
+    *{ box-sizing:border-box; }
+    body{ margin:0; background:var(--bg); color:var(--text); font-family:'NanumBarunpen','Gowun Dodum',system-ui,sans-serif; padding:72px 84px; }
+    .container{ max-width:760px; margin:0 auto; }
+    
+    /* 상단 메뉴바 스타일 */
+    .topbar{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:60px; }
+    .brand{ font-size:15px; text-decoration:none; color:var(--text); font-weight:bold; }
+    nav a{ margin-left:22px; font-size:13px; text-decoration:none; color:var(--muted); }
+    nav a.active{ color:var(--text); text-decoration:underline; text-underline-offset:6px; }
+
+    /* About 페이지 전용 스타일 */
+    .profile-img { width: 100%; max-width: 450px; height: auto; display: block; margin: 0 0 50px 0; background-color: var(--box); }
+    .section-title { font-size: 12px; color: var(--muted); margin-bottom: 15px; font-weight: bold; letter-spacing: 0.15em; }
+    .bio { font-size: 15.5px; line-height: 1.8; margin-bottom: 70px; word-break: keep-all; }
+    .statement { font-size: 14.5px; line-height: 1.9; word-break: keep-all; color: #222; }
+    .statement p { margin-bottom: 24px; }
+
+    /* 모바일 화면 맞춤 설정 */
+    @media (max-width:640px){ body{ padding:32px 18px; } .topbar{ flex-direction:column; align-items:flex-start; gap:14px; margin-bottom:40px; } nav a{ margin-left:0; margin-right:14px; } }
+  </style>
 </head>
 <body>
-  <h1>Works</h1>
-</body>
-</html>
+  <div class="container">
+    
+    <header class="topbar">
+      <a class="brand" href="index.html">강윤희 KANG YUNHUI</a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="works.html">Works</a>
+        <a href="about.html" class="active">About</a>
+        <a href="cv.html">CV</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
 
+    <main>
+      <img class="profile-img" src="images/profile.jpg" alt="강윤희 작가 사진">
+
+      <div class="section-title">ABOUT</div>
+      <div class="bio">
+        강윤희는 불안과 긴장, 늙어감과 같은 비가시적인 감각을 구조의 문제로 다루는 작업을 한다. 서로 기대고 균열하는 관계 속에서 존재가 사라짐으로 향하는 시간을 탐구하며, 무너지지 않기 위해 버티는 상태를 형태로 드러낸다. 작업 속 감각은 하나의 의미로 고정되기보다 상황에 따라 흔들리고 변화하는 상태로 다뤄진다. 이러한 탐구는 도자를 중심으로 전개된다.
+      </div>
+
+      <div class="section-title">ARTIST STATEMENT</div>
+      <div class="statement">
+        <p>나는 종종 잠이 오지 않는 새벽에 깨어 있는 편이다. 비가 올 것 같은 공기나, 창문을 조금 열어 두었을 때 들어오는 축축한 바람 같은 것들을 오래 바라본다. 그런 시간에는 사람이나 사물의 상태가 평소보다 또렷하게 보인다. 서로 기대고 있는 것들, 금이 가 있지만 아직 무너지지 않은 것들, 가까스로 균형을 유지하고 있는 것들.</p>
+        
+        <p>내가 쓰는 이야기들도 대부분 그런 장면에서 시작된다. 새벽의 산책, 컵에 떨어지는 물, 먼지를 털어내는 반복적인 몸짓 같은 것들. 그 안에서 사람들은 서로를 지탱하기도 하고, 때로는 서로의 균열을 더 또렷하게 드러내기도 한다.</p>
+        
+        <p>나는 이런 관계들을 작업에서도 비슷하게 바라본다. 불안이나 긴장,
