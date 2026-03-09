@@ -87,3 +87,39 @@
       if (currentIdx >= allImages.length) currentIdx = 0;
       lightboxImg.src = imgPath(allImages[currentIdx]);
     }
+
+    // --- 여기가 윤희님 파일에서 누락되었던 핵심 코드입니다! ---
+    if (work) {
+      document.title = `${work.title} — Kang Yunhui`;
+      titleEl.textContent = work.title;
+      metaEl.textContent = work.info || "";
+      allImages = [work.image, ...(Array.isArray(work.details) ? work.details : [])];
+      slider.innerHTML = allImages.map((fn, idx) => `
+        <div class="slide"><img src="${imgPath(fn)}" alt="" onclick="openLightbox(${idx})"></div>
+      `).join("");
+      
+      if (allImages.length >= 2) {
+        dots.innerHTML = allImages.map((_, i) => `<span class="dot ${i===0?'active':''}"></span>`).join("");
+      } else {
+        document.getElementById("prevBtn").style.display = "none";
+        document.getElementById("nextBtn").style.display = "none";
+      }
+    } else {
+      titleEl.textContent = "작품을 찾을 수 없음";
+    }
+
+    document.getElementById("prevBtn").addEventListener("click", (e) => moveImg(-1, e));
+    document.getElementById("nextBtn").addEventListener("click", (e) => moveImg(1, e));
+    
+    slider.addEventListener('scroll', () => {
+      const index = Math.round(slider.scrollLeft / slider.clientWidth);
+      document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === index));
+    }, { passive: true });
+    
+    lightbox.addEventListener("click", () => {
+      lightbox.style.display = "none";
+      document.body.style.overflow = "auto";
+    });
+  </script>
+</body>
+</html>
