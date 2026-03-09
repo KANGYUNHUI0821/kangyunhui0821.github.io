@@ -2,10 +2,126 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>Works</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CV — Kang Yunhui</title>
+  <style>
+    @font-face{ font-family:'NanumBarunpen'; src:url('https://cdn.jsdelivr.net/gh/fontbee/font@main/NAVER/NanumBarunpen.woff') format('woff'); font-weight:400; font-style:normal; font-display:swap; }
+    @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+    
+    :root{ --bg:#fbfbfb; --text:#111; --muted:#6b6b6b; --box:#f1f1f1; }
+    *{ box-sizing:border-box; }
+    body{ margin:0; background:var(--bg); color:var(--text); font-family:'NanumBarunpen','Gowun Dodum',system-ui,sans-serif; padding:72px 84px; }
+    .container{ max-width:760px; margin:0 auto; }
+    
+    .topbar{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:60px; }
+    .brand{ font-size:15px; text-decoration:none; color:var(--text); font-weight:bold; }
+    nav a{ margin-left:22px; font-size:13px; text-decoration:none; color:var(--muted); }
+    nav a.active{ color:var(--text); text-decoration:underline; text-underline-offset:6px; }
+
+    .cv-section { margin-bottom: 50px; }
+    .cv-title { font-size: 13px; font-weight: bold; color: var(--muted); letter-spacing: 0.15em; margin-bottom: 20px; border-bottom: 1px solid #eaeaea; padding-bottom: 8px; }
+    
+    .cv-list { list-style: none; padding: 0; margin: 0; }
+    .cv-item { display: flex; margin-bottom: 12px; font-size: 14.5px; line-height: 1.6; }
+    .cv-year { flex: 0 0 70px; color: var(--text); }
+    .cv-desc { flex: 1; color: #333; }
+    .cv-desc span { color: var(--muted); font-size: 13.5px; margin-left: 6px; }
+
+    @media (max-width:640px){ body{ padding:32px 18px; } .topbar{ flex-direction:column; align-items:flex-start; gap:14px; margin-bottom:40px; } nav a{ margin-left:0; margin-right:14px; } .cv-item { flex-direction: column; margin-bottom: 16px; } .cv-year { margin-bottom: 4px; font-weight: bold; } .cv-desc span { display: block; margin-left: 0; margin-top: 2px; } }
+  </style>
 </head>
 <body>
-  <h1>Works</h1>
+  <div class="container">
+    
+    <header class="topbar">
+      <a class="brand" href="index.html">강윤희 KANG YUNHUI</a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="works.html">Works</a>
+        <a href="about.html">About</a>
+        <a href="cv.html" class="active">CV</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="cv-section">
+        <div class="cv-title">EDUCATION</div>
+        <ul class="cv-list">
+          <li class="cv-item">
+            <div class="cv-year">Present</div>
+            <div class="cv-desc">동덕여자대학교 대학원 공예학과 공예전공 박사과정 재학</div>
+          </li>
+          <li class="cv-item">
+            <div class="cv-year">2024</div>
+            <div class="cv-desc">동덕여자대학교 대학원 공예학과 도자공예디자인전공 석사 졸업</div>
+          </li>
+          <li class="cv-item">
+            <div class="cv-year">2022</div>
+            <div class="cv-desc">동덕여자대학교 디지털공예학과 학사 복수전공 졸업</div>
+          </li>
+          <li class="cv-item">
+            <div class="cv-year">2021</div>
+            <div class="cv-desc">동덕여자대학교 회화과 학사 졸업</div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="cv-section">
+        <div class="cv-title">SOLO EXHIBITIONS</div>
+        <ul class="cv-list">
+          <li class="cv-item">
+            <div class="cv-year">2024</div>
+            <div class="cv-desc">unjoint <span>(Gallery hoM_Lab, 서울)</span></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="cv-section">
+        <div class="cv-title">GROUP EXHIBITIONS</div>
+        <ul class="cv-list">
+          <li class="cv-item">
+            <div class="cv-year">2025</div>
+            <div class="cv-desc">경계위의 C.L.A.Y. <span>(경기도자미술관, 이천)</span></div>
+          </li>
+          <li class="cv-item">
+            <div class="cv-year">2024</div>
+            <div class="cv-desc">제25회 한국현대도예가회 정기전 <span>(한국공예관 문화제조창, 청주)</span></div>
+          </li>
+          <li class="cv-item">
+            <div class="cv-year">2023</div>
+            <div class="cv-desc">궁회현물 <span>(안동별궁, 서울)</span></div>
+          </li>
+          <li class="cv-item">
+            <div class="cv-year">2023</div>
+            <div class="cv-desc">2023 아시아현대도예전 <span>(양구백자박물관, 양구)</span></div>
+          </li>
+          <li class="cv-item">
+            <div class="cv-year">2022</div>
+            <div class="cv-desc">[지금은]녹아내리는 중 <span>(노들섬 스페이스 445, 서울)</span></div>
+          </li>
+          <li class="cv-item">
+            <div class="cv-year">2022</div>
+            <div class="cv-desc">RE+WIND 한국도자학회 회원전 2022 <span>(마루아트센터 신관 3층 2관, 서울)</span></div>
+          </li>
+          <li class="cv-item">
+            <div class="cv-year">2022</div>
+            <div class="cv-desc">잠비전 <span>(북촌한옥청, 서울)</span></div>
+          </li>
+          <li class="cv-item">
+            <div class="cv-year">2022</div>
+            <div class="cv-desc">2022 아시아현대도예전 <span>(강릉아트센터, 강릉)</span></div>
+          </li>
+          <li class="cv-item">
+            <div class="cv-year">2022</div>
+            <div class="cv-desc">한국·태국 현대도예 교류전 <span>(전시 장소 입력 필요)</span></div>
+          </li>
+        </ul>
+      </div>
+
+     
+    </main>
+    
+  </div>
 </body>
 </html>
-
