@@ -1,5 +1,12 @@
-// data/works.js
 window.WORKS = [
+  { 
+    id: "work-2026-01",
+    year: 2026,
+    title: "묵음의 숲 2026ver.",
+    info: "가변크기, 페이퍼 클레이, 저화도 안료, 칸탈선, 2026", 
+    image: "묵음의 숲 전체.jpg",
+    details: ["묵음의 숲 전체 세부.jpg"]
+  },
   { id:"rusted-language", title:"綠(녹)슨 언어", info:"페이퍼클레이, 유약, 저화도 안료, 칸탈선, 50×50×75(cm), 2025", year:2025, image:"녹슨언어.jpg", details:[] },
   { id:"mokeum-8", title:"묵음의 숲 8", info:"페이퍼클레이, 칸탈선, 유약, 37 × 30 × 25(cm), 2025", year:2025, image:"묵음의 숲 8.jpg", details:[] },
   { id:"mokeum-6", title:"묵음의 숲 6", info:"페이퍼클레이, 칸탈선, 유약, 25 × 21 × 32(cm), 2025", year:2025, image:"묵음의 숲 6.jpg", details:[] },
@@ -14,11 +21,3 @@ window.WORKS = [
 
   { id:"organizing-mixed", title:"썩은 이를 정리하는 방법", info:"백자토, 유약, 수금, 가변설치, 2023", year:2023, image:"썩은이를 정리하는방법.jpg", details:[] }
 ];
-{
-    id: "work-2026-01",
-    year: "2026",
-    title: "묵음의 숲 2026ver.",
-    info: "가변크기, 페이퍼 클레이, 저화도 안료, 칸탈선, 2026", // 👈 이 부분은 실제 재료와 사이즈로 수정해 주세요!
-    image: "묵음의 숲 전체.jpg",
-    details: ["묵음의 숲 전체 세부.jpg"]
-  },
