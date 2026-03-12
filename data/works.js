@@ -14,6 +14,7 @@ window.WORKS = [
 
   { id:"hands", title:"두 손 모아", info:"백자토, 유약, 아크릴박스, 가변설치, 2025", year:2025, image:"두손모아.jpg", details:["두손모아 세부.JPG"] },
 
+  { id:"galchi-jorim", title:"할머니가 주신 갈치조림", info:"백자토, 유약, 가변설치, 2024", year:2024, image:"할머니가 주신 갈치조림.jpg", details:["할머니가 주신 갈치조림 세부.jpg"] },
   { id:"waterdrop", title:"물방울", info:"백자토, 섬유, 유약, 가변설치, 2024", year:2024, image:"물방울.jpg", details:["물방울세부.JPG"] },
   { id:"put-it-on-you", title:"put it on you", info:"백자토, 유약, 140×160×8(가변설치)(cm), 2024", year:2024, image:"put it on you.jpg", details:["put it on you 세부.jpg"] },
   { id:"maebyeong", title:"2024.02", info:"청자토, 유약, 가변설치, 2024", year:2024, image:"매병.JPG", details:["매병세부.JPG"] },
