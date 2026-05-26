@@ -4,7 +4,7 @@ window.WORKS = [
   year: 2026,
   title: "고목의 사리",
   info: "자기질점토, 고화도 안료, 저화도 안료, 전구, 전선, 22×22×43(cm), 2026", 
-  image: "고목의사리.jpg",
+  image: "강윤희_고목의사리.jpg",
   details: []
 },
 
