@@ -5,7 +5,7 @@ window.WORKS = [
   title: "고목의 사리",
   info: "자기질점토, 고화도 안료, 저화도 안료, 전구, 전선, 22×22×43(cm), 2026", 
   image: "강윤희_고목의사리.jpg",
-  details: []
+  details: ["고목의 사리 어둠.jpg"]
 },
 
 { 
@@ -14,7 +14,7 @@ window.WORKS = [
   title: "다정한 할머니의 위트",
   info: "자기질점토, 고화도 유약, 전구, 전선, 실, 라탄, 24×24×47(cm), 2026", 
   image: "다정한 할머니의 위트.jpg",
-  details: []
+  details: ["다정한 할머니의 위트2.jpg"]
 },
   { 
     id: "work-2026-01",
