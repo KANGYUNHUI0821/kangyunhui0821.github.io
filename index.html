@@ -158,6 +158,23 @@
 
     .workbox:hover .box-default{ opacity:0; }
     .workbox:hover .box-hover{ opacity:1; }
+    .read-mark{
+  position:absolute;
+  right:16px;
+  bottom:12px;
+
+  font-size:11.5px;
+  color:var(--muted);
+
+  z-index:3;
+  opacity:.75;
+  transition:opacity .18s ease;
+}
+
+.workbox:hover .read-mark{
+  opacity:1;
+  color:var(--text);
+}
 
     /* =========================
        Artist Note
@@ -217,10 +234,12 @@
       }
 
       .box-swap{
-        padding:14px 14px;
-        font-size:13px;
-        line-height:1.9;
-      }
+  position:relative;
+  background:var(--box);
+  padding:18px 18px 34px;
+  line-height:2;
+  font-size:13.5px;
+}
 
       .box-hover{
         font-size:18px;
@@ -279,6 +298,7 @@
               <strong>윤희:</strong> 군집에 속해있을 때. 혼자 있을 때. 때때로 가끔. 때때로 자주.
             </div>
             <div class="box-hover" aria-hidden="true">산하엽</div>
+            <span class="read-mark">이어 읽기</span>
           </div>
         </a>
 
@@ -297,6 +317,7 @@
               했던 걱정들에서 나온다.
             </div>
             <div class="box-hover" aria-hidden="true">물방울</div>
+            <span class="read-mark">이어 읽기</span>
           </div>
         </a>
 
@@ -309,6 +330,7 @@
               그래서 어떤 행동을 해야 할지. 어떤 행동을 하지 말아야 할지 가늠하기 항상 어려웠다.
             </div>
             <div class="box-hover" aria-hidden="true">의태</div>
+            <span class="read-mark">이어 읽기</span>
           </div>
         </a>
 
@@ -329,6 +351,7 @@
               파란색은 상실의 색이야.”
             </div>
             <div class="box-hover" aria-hidden="true">비 내리는 날의 먼지</div>
+            <span class="read-mark">이어 읽기</span>
           </div>
         </a>
       </section>
