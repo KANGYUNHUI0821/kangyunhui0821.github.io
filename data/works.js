@@ -1,5 +1,22 @@
 window.WORKS = [
   { 
+  id: "gomok-sari",
+  year: 2026,
+  title: "고목의 사리",
+  info: "자기질점토, 고화도 안료, 저화도 안료, 전구, 전선, 22×22×43(cm), 2026", 
+  image: "고목의 사리.jpg",
+  details: []
+},
+
+{ 
+  id: "grandmother-wit",
+  year: 2026,
+  title: "다정한 할머니의 위트",
+  info: "자기질점토, 고화도 유약, 전구, 전선, 실, 라탄, 24×24×47(cm), 2026", 
+  image: "다정한 할머니의 위트.jpg",
+  details: []
+},
+  { 
     id: "work-2026-01",
     year: 2026,
     title: "묵음의 숲 2026ver.",
