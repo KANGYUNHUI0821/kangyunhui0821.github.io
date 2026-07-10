@@ -1,4 +1,12 @@
 window.WORKS = [
+{ 
+  id: "night-seed-1",
+  year: 2026,
+  title: "밤의 씨앗 1",
+  info: "자기질점토, 고화도 안료, 저화도 안료, 수금, 전구, 전선, 17×16×40(cm), 2026",
+  image: "밤의 씨앗1.jpg",
+  details: ["밤의씨앗2.jpg"]
+},
   { 
   id: "gomok-sari",
   year: 2026,
