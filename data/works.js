@@ -1,5 +1,18 @@
 window.WORKS = [
 { 
+  
+{
+  id: "night-seed-2",
+  year: 2026,
+  title: "밤의 씨앗2",
+  image: "밤의씨앗2_조명-2 복사-2.jpg",
+  details: [
+    "밤의씨앗2_조명.jpg",
+    "밤의씨앗2_디테일.jpg"
+  ],
+  info: "자기질점토, 고화도유약, 고화도안료, 저화도안료, 수금, 전선, 전구, 울, 48 × 18 × 17 (cm), 2026"
+},
+
   id: "night-seed-1",
   year: 2026,
   title: "밤의 씨앗 1",
