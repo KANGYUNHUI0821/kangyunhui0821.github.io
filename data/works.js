@@ -1,5 +1,5 @@
 window.WORKS = [
-  {
+{
   id: "there-was-a-bird",
   year: 2026,
   title: "들여다보니 새가 있었다",
